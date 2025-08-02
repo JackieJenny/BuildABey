@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBarOLD = () => {
   const location = useLocation()
 
   const navItems = [
@@ -51,4 +51,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBarOLD
