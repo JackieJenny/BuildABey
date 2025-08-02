@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap');
 @import "tailwindcss";
 @import "keen-slider/keen-slider.min.css";
+
+.big-shoulders {
+  font-family: "Big Shoulders", sans-serif;
+  font-weight: 600;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

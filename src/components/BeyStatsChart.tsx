@@ -21,7 +21,7 @@ interface Props {
 
 
 
-const colors = ['#ef4444', '#10b981', '#3b82f6']
+const colors = ['white', 'white', 'white']
 
 export default function BeyStatsChart({stats}: Props) {
   const data = [
