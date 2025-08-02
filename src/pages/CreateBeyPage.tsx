@@ -1,20 +1,24 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function CreateBeyPage() {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
-    <>
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-4">
-        <h2 className="text-3xl font-bold mb-4">Beyblade Creation Page</h2>
-        <button
-            onClick={() => navigate('/summary')}
-            className="bg-blue-600 px-6 py-3 rounded-xl text-xl hover:bg-blue-700 transition"
-        >
-            Test
-        </button>
-        </div>
-    </>
-  )
+    <motion.div
+      className="w-screen h-screen flex flex-col items-center justify-center bg-gray-800 text-white"
+      initial={{ opacity: 0, x: 500 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -500 }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
+      <h2 className="text-4xl mb-8">Create Your Beyblade</h2>
+      <button
+        onClick={() => navigate('/summary')}
+        className="bg-red-600 px-6 py-3 rounded-xl text-xl hover:bg-red-700 transition"
+      >
+        Finish
+      </button>
+    </motion.div>
+  );
 }
