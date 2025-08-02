@@ -2,14 +2,14 @@ import {EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeCo
 
 const PresetBeyblades = {
     PegasusCombo: {
-        name: 'Pegasus Combo',
+        name: 'Pegasus',
         energy: EnergyLayer.find(p => p.id === 'PegasusEnergyLayer')!,
         bolt: FaceBolt.find(p => p.id === "PegasusFaceBolt")!,
         track: SpinTrack.find(p => p.id === "PegasusSpinTrack")!,
         tip: Tip.find(p => p.id === "PegasusTip")!
     },
     LdragoCombo: {
-        name: 'Ldrago Combo',
+        name: 'Ldrago',
         energy: EnergyLayer.find(p => p.id === 'LdragoEnergyLayer')!,
         bolt: FaceBolt.find(p => p.id === "LdragoFaceBolt")!,
         track: SpinTrack.find(p => p.id === "LdragoSpinTrack")!,
