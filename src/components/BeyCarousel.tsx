@@ -15,12 +15,13 @@ interface Props {
     title: string;
     parts: Part[];
     onSelect: (part: Part) => void;
+    selectedPart?: Part;
 }
 
-const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect }) => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect, selectedPart }) => {
+    const [, setSelectedIndex] = useState(0);
 
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
         slides: {
             perView: 1, // Show 1 slide always
@@ -33,6 +34,15 @@ const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect }) => {
             onSelect(parts[s.track.details.rel]);
         },
     });
+
+    useEffect(() => {
+        if (selectedPart && instanceRef.current) {
+            const index = parts.findIndex((p) => p.id === selectedPart.id);
+            if (index !== -1) {
+                instanceRef.current.moveToIdx(index);
+            }
+        }
+    }, [selectedPart]);
 
     useEffect(() => {
         if (parts.length > 0) onSelect(parts[0]);

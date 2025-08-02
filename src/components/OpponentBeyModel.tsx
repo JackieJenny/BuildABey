@@ -4,7 +4,7 @@ import { Group, Mesh } from 'three'
 
 const OpponentBeyModel = () => {
   const ref = useRef<Group>(null)
-  const { scene } = useGLTF('/models/leone.glb')
+  const { scene } = useGLTF('/models/pegasus.glb')
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -18,6 +18,6 @@ const OpponentBeyModel = () => {
   return <primitive ref={ref} object={scene} />
 }
 
-useGLTF.preload('/models/leone.glb')
+useGLTF.preload('/models/pegusus.glb')
 
 export default OpponentBeyModel

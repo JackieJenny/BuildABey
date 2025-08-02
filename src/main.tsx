@@ -11,17 +11,17 @@ import Layout from './components/Layout.tsx'
 
 createRoot(document.getElementById('root')!).render(
 
-  <StrictMode>
+  <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="create" element={<CreateBeyPage />} />
           <Route path="summary" element={<SummaryPage />} />
           <Route path="compare" element={<ComparePage />} />
-        </Route>
+        
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </>
+
 )
  

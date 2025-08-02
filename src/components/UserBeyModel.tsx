@@ -4,7 +4,7 @@ import { Group, Mesh } from 'three'
 
 const UserBeyModel = () => {
   const ref = useRef<Group>(null)
-  const { scene } = useGLTF('/models/leone.gltf')
+  const { scene } = useGLTF('/models/leone.glb')
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -18,6 +18,6 @@ const UserBeyModel = () => {
   return <primitive ref={ref} object={scene} />
 }
 
-useGLTF.preload('/models/leone.gltf')
+useGLTF.preload('/models/leone.glb')
 
 export default UserBeyModel
