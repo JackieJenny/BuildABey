@@ -40,9 +40,11 @@ export default function CollectionPage() {
               return (
                 <div
                   key={bey?.id || `empty-${index}`}
-                  className={`border rounded-xl overflow-hidden shadow-md transition-transform duration-300 ${
+                  className={`backdrop-blur-md bg-gray-100/5 w-full h-44 rounded-xl p-4 border border-gray-500/50 shadow-lg shadow-inner
+                    flex items-center justify-center
+                    transition-transform duration-300 ${
                     bey ? 'cursor-pointer hover:scale-105' : 'bg-gray-100'
-                  } ${isSelected ? 'ring-2 ring-blue-500' : ''} flex items-center justify-center h-32`}
+                  } ${isSelected ? 'ring-2 ring-purple-500' : ''} flex items-center justify-center h-32`}
                   {...(bey && { onClick: () => setSelected(bey) })}
                 >
                   {bey ? (
@@ -52,7 +54,7 @@ export default function CollectionPage() {
                       className="w-24 h-24 object-contain bg-white"
                     />
                   ) : (
-                    <div className="w-24 h-24 bg-white flex items-center justify-center text-gray-400 text-sm">
+                    <div className="w-24 h-24 bg-transparent flex items-center justify-center text-gray-400 text-sm">
                       {/* Empty slot */}
                     </div>
                   )}
@@ -88,7 +90,7 @@ export default function CollectionPage() {
               <img
                 src={selected.image}
                 alt={selected.name}
-                className="w-80 h-80 object-contain bg-white rounded-xl shadow-lg mb-6"
+                className="w-[30rem] h-[30rem] object-contain bg-white rounded-xl shadow-lg mb-6"
               />
               <h2 className="text-xl font-bold text-center">{selected.name}</h2>
             </>
