@@ -56,6 +56,7 @@ const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect }) => {
                                         src={part.image}
                                         alt={part.name}
                                         className="w-24 h-24 mx-auto object-contain"
+                                        
                                     />
                                 )}
                             </div>

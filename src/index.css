@@ -69,3 +69,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.landing-page {
+  background-image: url('/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  color: white;
+}

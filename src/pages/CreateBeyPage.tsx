@@ -4,7 +4,8 @@ import { EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeC
 
 function CreateBeyPage() {
     return (
-        <div className="p-6">
+        <div className="p-6"
+            style={{ backgroundImage: "url('/images/Background.png')" }}>
             <h1 className = "text-3xl font-bold mb-6">Craft your masterpiece</h1>
             <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={() => {}}/>
             <BeyCarousel title="Fusion Wheel " parts={EnergyLayer} onSelect={() => {}}/>
