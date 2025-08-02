@@ -8,6 +8,7 @@ import SummaryPage from './pages/SummaryPage.tsx'
 import ComparePage from './pages/ComparePage.tsx'
 
 createRoot(document.getElementById('root')!).render(
+  
   <StrictMode>
     <BrowserRouter>
       <Routes>
