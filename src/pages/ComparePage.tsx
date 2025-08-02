@@ -23,28 +23,58 @@ const ComparePage = () => {
   return (
     <>
       <Navbar />
-      <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
-        {/* Top empty quarter */}
-        <div style={{ flex: 1 }} />
-        {/* Middle half with canvases and VS text */}
-        <div style={{ flex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ flex: 1, height: '100%' }}>
-            <SceneCanvas>
-              <UserBeyModel key="left" />
-            </SceneCanvas>
+      <div className="flex h-screen items-center justify-center px-24" style={{ width: '100vw' }}>
+        {/* Align inner boxes to bottom */}
+        <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
+
+          {/* Left Box */}
+          <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col">
+            {/* Dropdown Menu */}
+            <select className="mb-4 rounded-md border border-gray-400 bg-white px-2 py-1 text-sm text-black shadow-sm focus:outline-none">
+              <option value="default">Select Bey</option>
+              <option value="valkyrie">Valkyrie</option>
+              <option value="spriggan">Spriggan</option>
+              <option value="luinor">Luinor</option>
+            </select>
+
+            <div className="flex-1">
+              <SceneCanvas>
+                <UserBeyModel key="left" />
+              </SceneCanvas>
+            </div>
+          </div> 
+
+          {/* Center Box */}
+          <div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner" >
+          test
           </div>
-          <div style={{ flex: 1, height: '100%' }}>
-            <SceneCanvas>
-              <OpponentBeyModel key="right"/>
-            </SceneCanvas>
+
+          {/* Right Box */}
+          <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col">
+            {/* Dropdown Menu */}
+            <select className="mb-4 rounded-md border border-gray-400 bg-white px-2 py-1 text-sm text-black shadow-sm focus:outline-none">
+              <option value="default">Select Bey</option>
+              <option value="valkyrie">Valkyrie</option>
+              <option value="spriggan">Spriggan</option>
+              <option value="luinor">Luinor</option>
+            </select>
+
+            {/* Scene */}
+            <div className="flex-1">
+              <SceneCanvas>
+                <OpponentBeyModel key="right" />
+              </SceneCanvas>
+            </div>
           </div>
+
         </div>
-        {/* Bottom empty quarter */}
-        <div style={{ flex: 1 }} />
-      </div>
+      </div> 
     </>
   )
 }
+
+
+
 
 
 export default ComparePage
