@@ -4,7 +4,7 @@ import { Group } from 'three'
 
 const TestBeyModel = () => {
   const ref = useRef<Group>(null)
-  const { scene } = useGLTF('/models/pegasus.glb') // path relative to `public/`
+  const { scene } = useGLTF('/models/leone.glb') // path relative to `public/`
 
   return <primitive ref={ref} object={scene} />
 }
