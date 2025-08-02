@@ -8,12 +8,12 @@ import SummaryPage from './pages/SummaryPage.tsx'
 import ComparePage from './pages/ComparePage.tsx'
 import Layout from './components/Layout.tsx'
 
+
 createRoot(document.getElementById('root')!).render(
 
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* Parent route wraps all children */}
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="create" element={<CreateBeyPage />} />
