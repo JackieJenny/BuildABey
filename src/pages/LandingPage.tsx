@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <>
         <div 
-        className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/Background.png')] 
+        className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
         bg-cover bg-center">
 
           <h1 className="text-5xl font-bold mb-8">BUILD A BEY</h1>

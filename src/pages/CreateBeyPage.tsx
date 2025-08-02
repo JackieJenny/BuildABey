@@ -34,7 +34,7 @@ export default function CreateBeyPage() {
       <Navbar />
         <div
         className="min-h-screen w-screen p-6 pt-24 bg-cover bg-center text-white"
-        style={{ backgroundImage: "url('/images/Background.png')" }}
+        style={{ backgroundImage: "url('/images/BackGround2.png')" }}
         >
 
         <h1 className="text-3xl font-bold mb-6">Craft your masterpiece</h1>
