@@ -20,6 +20,7 @@ const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
 )
 
 const ComparePage = () => {
+
   return (
     <>
       <Navbar />
