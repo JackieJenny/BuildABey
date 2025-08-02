@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="create" element={<CreateBeyPage />} />
           <Route path="summary" element={<SummaryPage />} />
           <Route path="compare" element={<ComparePage />} />
-        
+          
       </Routes>
     </BrowserRouter>
   </>
