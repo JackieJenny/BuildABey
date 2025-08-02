@@ -1,9 +1,10 @@
 
-import React from 'react';
+
 import { beybladeCollection } from '../components/BeyCollectionData';
 
-export default function CollectionPage() {
+export default function CollectionsPage() {
   return (
+    <>
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Your Beyblade Collection</h1>
 
@@ -22,5 +23,6 @@ export default function CollectionPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }

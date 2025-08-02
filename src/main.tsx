@@ -6,7 +6,8 @@ import LandingPage from './pages/LandingPage.tsx'
 import CreateBeyPage from './pages/CreateBeyPage.tsx'
 import SummaryPage from './pages/SummaryPage.tsx'
 import ComparePage from './pages/ComparePage.tsx'
-import Layout from './components/Layout.tsx'
+import CollectionsPage from './pages/CollectionsPage.tsx'
+
 
 
 createRoot(document.getElementById('root')!).render(
@@ -18,7 +19,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="create" element={<CreateBeyPage />} />
           <Route path="summary" element={<SummaryPage />} />
           <Route path="compare" element={<ComparePage />} />
-          
+          <Route path="collections" element={<CollectionsPage/>} />
       </Routes>
     </BrowserRouter>
   </>
