@@ -1,20 +1,19 @@
-import { useNavigate } from 'react-router-dom'
-
-export default function CreateBeyPage() {
-  const navigate = useNavigate()
+import BeyCarousel from "../components/BeyCarousel.tsx";
+import { EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeComponents.ts";
 
 
-  return (
-    <>
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-4">
-        <h2 className="text-3xl font-bold mb-4">Beyblade Creation Page</h2>
-        <button
-            onClick={() => navigate('/summary')}
-            className="bg-blue-600 px-6 py-3 rounded-xl text-xl hover:bg-blue-700 transition"
-        >
-            Test
-        </button>
+
+
+function CreateBeyPage() {
+    return (
+        <div className="p-6">
+            <h1 className = "text-3xl font-bold mb-6">Craft your masterpiece</h1>
+            <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={() => {}}/>
+            <BeyCarousel title="Fusion Wheel " parts={EnergyLayer} onSelect={() => {}}/>
+            <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={() => {}}/>
+            <BeyCarousel title="Tip" parts={Tip} onSelect={() => {}}/>
         </div>
-    </>
-  )
+    );
 }
+
+export default CreateBeyPage;
