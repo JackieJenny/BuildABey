@@ -4,7 +4,7 @@ export default function LandingPage() {
   const navigate = useNavigate()
   return (
     <>
-        <div className="h-screen flex flex-col justify-center items-center bg-gray-900 text-white">
+        <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white">
         <h1 className="text-5xl font-bold mb-8">Landing Page</h1>
         <button
             onClick={() => navigate('/create')}
