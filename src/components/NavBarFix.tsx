@@ -16,7 +16,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm py-4">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold text-blue-600">
-          BeyBattle AI
+          BuildABey
         </Link>
 
         <div className="flex space-x-6">

@@ -66,10 +66,15 @@ const ComparePage = () => {
     setIsRightSelectorOpen(false);
   };
 
+
+  const leftWinProbability = 0.7; // Just an example
+  const leftPercent = leftWinProbability * 100;
+  const rightPercent = (1 - leftWinProbability) * 100;
+
   return (
     <>
       <Navbar />
-      <div className="flex h-screen items-center justify-center px-24" style={{ width: '100vw' , backgroundImage: "url('/images/Background.png')"}}>
+      <div className="flex flex-col h-screen items-center justify-center px-24" style={{ width: '100vw' , backgroundImage: "url('/images/Background.png')"}}>
         <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
 
           {/* Left Box */}
@@ -96,7 +101,7 @@ const ComparePage = () => {
 
           {/* Center Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner">
-            test
+            COMPARE
           </div>
 
           {/* Right Box */}
@@ -121,8 +126,48 @@ const ComparePage = () => {
               </SceneCanvas>
             </div>
           </div>
-
         </div>
+
+<div className="w-full max-w-[1400px] mt-8 px-4 flex flex-col items-center">
+  {/* OUTER WRAPPER (THE BUBBLE) */}
+  <div className="w-full bg-transparent rounded-full border border-white/60 p-1 shadow-inner">
+    {/* INNER CONTENT */}
+    <div className="relative w-full h-6 bg-transparent flex items-center justify-center rounded-full overflow-hidden">
+      
+      {/* LEFT BAR */}
+      <div
+        className="bg-white h-full transition-all duration-500"
+        style={{
+          width: `${leftPercent / 2}%`,
+          marginRight: '2px',
+          borderRadius: '9999px',
+        }}
+      />
+
+      {/* CENTER DIVIDER */}
+      <div className="w-1 h-4 bg-white/70 rounded-full mx-1" />
+
+      {/* RIGHT BAR */}
+      <div
+        className="bg-white h-full transition-all duration-500"
+        style={{
+          width: `${rightPercent / 2}%`,
+          marginLeft: '2px',
+          borderRadius: '9999px',
+        }}
+      />
+    </div>
+  </div>
+
+  {/* PERCENT LABELS */}
+  <div className="w-full flex justify-between text-white text-sm font-semibold mt-2 px-2">
+    <span>{leftPercent.toFixed(0)}%</span>
+    <span>{rightPercent.toFixed(0)}%</span>
+  </div>
+</div>
+
+
+
       </div>
     </>
   );
