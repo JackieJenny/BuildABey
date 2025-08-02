@@ -2,9 +2,19 @@ import { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Group, Mesh } from 'three'
 
-const OpponentBeyModel = () => {
+type Props = {
+  modelName?: string
+}
+
+const OpponentBeyModel = ({ modelName }: Props) => {
   const ref = useRef<Group>(null)
-  const { scene } = useGLTF('/models/pegasus.glb')
+  const finalModelName = modelName || "pegasus_opp"
+
+  // If finalModelName is falsy for some reason, avoid rendering
+  if (!finalModelName) return null
+
+  const path = `/models/${finalModelName}.glb`
+  const { scene } = useGLTF(path)
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -17,7 +27,5 @@ const OpponentBeyModel = () => {
 
   return <primitive ref={ref} object={scene} />
 }
-
-useGLTF.preload('/models/pegusus.glb')
 
 export default OpponentBeyModel
