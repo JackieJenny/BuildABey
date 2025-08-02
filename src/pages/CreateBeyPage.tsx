@@ -48,6 +48,7 @@ export default function CreateBeyPage() {
                             </div>
                             {/* Presets and Stats column */}
 
+
                             <div className="flex flex-col items-center min-w-[340px] gap-8">
                                 {/* Presets box */}
                                 <div className="w-full border-2 border-gray-400 rounded-xl p-4 bg-black/30">
