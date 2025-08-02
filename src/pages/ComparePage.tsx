@@ -10,8 +10,8 @@ import { Environment } from '@react-three/drei'
 const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
   <div style={{ flex: 1, height: '100%' }}>
     <Canvas camera={{ position: [0, 2, 5], fov: 60 }} shadows>
-      <Environment preset="night" />
-      <ambientLight intensity={0.5} />
+      <Environment preset="dawn" />
+      <ambientLight intensity={0.3} />
       <OrbitControls />
       {children}
     </Canvas>
@@ -29,18 +29,6 @@ const ComparePage = () => {
           <SceneCanvas>
             <UserBeyModel key="left" />
           </SceneCanvas>
-        </div>
-        <div style={{
-          width: '80px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '2.5rem',
-          fontWeight: 'bold',
-          color: '#fff',
-          textShadow: '0 0 8px #000'
-        }}>
-          VS
         </div>
         <div style={{ flex: 1, height: '100%' }}>
           <SceneCanvas>
