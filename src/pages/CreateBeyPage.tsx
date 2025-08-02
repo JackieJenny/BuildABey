@@ -1,8 +1,6 @@
 import BeyCarousel from "../components/BeyCarousel.tsx";
+import BeyStatsChart from "../components/BeyStatsChart.tsx";
 import { EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeComponents.ts";
-
-
-
 
 function CreateBeyPage() {
     return (
@@ -12,7 +10,14 @@ function CreateBeyPage() {
             <BeyCarousel title="Fusion Wheel " parts={EnergyLayer} onSelect={() => {}}/>
             <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={() => {}}/>
             <BeyCarousel title="Tip" parts={Tip} onSelect={() => {}}/>
+
+            <div className="my-10" />
+
+            {/* Horizontal bar chart */}
+            <h2 className="text-2xl font-semibold mb-4">Beyblade Stats Overview</h2>
+            <BeyStatsChart />
         </div>
+
     );
 }
 
