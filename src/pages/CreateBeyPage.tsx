@@ -1,7 +1,7 @@
 import BeyCarousel from "../components/BeyCarousel.tsx";
 import BeyStatsChart from "../components/BeyStatsChart.tsx";
-import { EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeComponents.ts";
-import {useState} from "react";
+import { EnergyLayer, FaceBolt, SpinTrack, Tip } from "../BeybladeParts/BeybladeComponents.ts";
+import { useState } from "react";
 import PresetBeyblades from "../components/presets.ts";
 import { Navbar } from "../components/NavBarFix.tsx";
 
@@ -30,44 +30,62 @@ export default function CreateBeyPage() {
     };
 
     return (
-    <>
-      <Navbar />
-        <div
-        className="min-h-screen w-screen p-6 pt-24 bg-cover bg-center text-white"
-        style={{ backgroundImage: "url('/images/BackGround2.png')" }}
-        >
+        <>
+            <Navbar />
+            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
+                <div className="backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner h-[1100px]">
+                    <div className="p-6">
+                        <div className="flex flex-row gap-8 items-start">
+                            {/* Carousels column */}
+                            <div className="flex flex-col flex-1">
+                                <div className="border-2 border-gray-400 rounded-xl p-4 bg-black/30 mb-4">
+                                    <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={setSelectedBolt} selectedPart={selectedBolt} />
+                                    <BeyCarousel title="Fusion Wheel" parts={EnergyLayer} onSelect={setSelectedEnergy} selectedPart={selectedEnergy} />
+                                    <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={setSelectedTrack} selectedPart={selectedTrack} />
+                                    <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
+                                </div>
 
-        <h1 className="text-3xl font-bold mb-6">Craft your masterpiece</h1>
+                            </div>
+                            {/* Presets and Stats column */}
 
-        <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={setSelectedBolt} selectedPart={selectedBolt} />
-        <BeyCarousel title="Fusion Wheel" parts={EnergyLayer} onSelect={setSelectedEnergy} selectedPart={selectedEnergy} />
-        <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={setSelectedTrack} selectedPart={selectedTrack} />
-        <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
-
-        <div className="my-10" />
-
-        <h2 className="text-2xl font-bold mb-4">Choose a Preset</h2>
-        <div className="flex flex-wrap gap-4 mb-10">
-          {Object.entries(PresetBeyblades).map(([key, preset]) => (
-            <button
-              key={key}
-              onClick={() => {
-                setSelectedEnergy(preset.energy);
-                setSelectedBolt(preset.bolt);
-                setSelectedTrack(preset.track);
-                setSelectedTip(preset.tip);
-              }}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-            >
-              {preset.name}
-            </button>
-          ))}
-        </div>
-
-        <h2 className="text-2xl font-semibold mb-4">Beyblade Stats Overview</h2>
-        <BeyStatsChart stats={totalStats} />
-      </div>
-    </>
-  );
+                            <div className="flex flex-col items-center min-w-[340px] gap-8">
+                                {/* Presets box */}
+                                <div className="w-full border-2 border-gray-400 rounded-xl p-4 bg-black/30">
+                                    <h2 className="text-2xl font-bold mb-2 text-center">Choose a Preset</h2>
+                                    <div className="flex flex-wrap gap-4 justify-center">
+                                        {Object.entries(PresetBeyblades).map(([key, preset]) => (
+                                            <button
+                                                key={key}
+                                                onClick={() => {
+                                                    setSelectedEnergy(preset.energy);
+                                                    setSelectedBolt(preset.bolt);
+                                                    setSelectedTrack(preset.track);
+                                                    setSelectedTip(preset.tip);
+                                                }}
+                                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                                            >
+                                                {preset.name}
+                                            </button>
+                                        ))}
+                                        {/* Placeholder buttons */}
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 3</button>
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 4</button>
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 5</button>
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 6</button>
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 7</button>
+                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 8</button>
+                                    </div>
+                                </div>
+                                {/* Stats chart box */}
+                                <div className="w-full border-2 border-gray-400 rounded-xl p-4 bg-black/30 flex flex-col items-center">
+                                    <h2 className="text-2xl font-semibold mb-4 text-center">Beyblade Stats Overview</h2>
+                                    <BeyStatsChart stats={totalStats} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
-
