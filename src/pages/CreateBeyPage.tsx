@@ -36,7 +36,7 @@ export default function CreateBeyPage() {
         className="min-h-screen w-screen p-6 pt-24 bg-cover bg-center text-white"
         style={{ backgroundImage: "url('/images/Background.png')" }}
         >
-
+        <div className="backdrop-blur-md bg-glassgrey/30 w-3/4 h-3/4 rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold mb-6">Craft your masterpiece</h1>
 
         <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={setSelectedBolt} selectedPart={selectedBolt} />
@@ -66,6 +66,7 @@ export default function CreateBeyPage() {
 
         <h2 className="text-2xl font-semibold mb-4">Beyblade Stats Overview</h2>
         <BeyStatsChart stats={totalStats} />
+        </div>
       </div>
     </>
   );
