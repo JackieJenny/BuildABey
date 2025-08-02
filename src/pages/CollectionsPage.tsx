@@ -1,10 +1,10 @@
-
-
 import { beybladeCollection } from '../components/BeyCollectionData';
+import { Navbar } from '../components/NavBarFix';
 
 export default function CollectionsPage() {
   return (
     <>
+    <Navbar />
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Your Beyblade Collection</h1>
 
