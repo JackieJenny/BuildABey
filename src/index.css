@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "keen-slider/keen-slider.min.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -68,5 +69,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-@import "keen-slider/keen-slider.min.css";
