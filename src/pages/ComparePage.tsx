@@ -11,8 +11,6 @@ type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self";
 
 
 
-
-
 const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<any>();
 
@@ -71,7 +69,7 @@ const ComparePage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex h-screen items-center justify-center px-24" style={{ width: '100vw' }}>
+      <div className="flex h-screen items-center justify-center px-24" style={{ width: '100vw' , backgroundImage: "url('/images/Background.png')"}}>
         <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
 
           {/* Left Box */}
@@ -129,9 +127,6 @@ const ComparePage = () => {
     </>
   );
 }
-
-
-
 
 
 
