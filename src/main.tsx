@@ -8,7 +8,12 @@ import SummaryPage from './pages/SummaryPage.tsx'
 import ComparePage from './pages/ComparePage.tsx'
 import CollectionsPage from './pages/CollectionsPage.tsx'
 
+import { useGLTF } from '@react-three/drei';
 
+useGLTF.preload('/models/pegasus_self.glb');
+useGLTF.preload('/models/leone_self.glb');
+useGLTF.preload('/models/pegasus_opp.glb');
+useGLTF.preload('/models/leone_opp.glb');
 
 createRoot(document.getElementById('root')!).render(
 

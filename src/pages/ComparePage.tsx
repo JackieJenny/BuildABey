@@ -3,11 +3,24 @@ import UserBeyModel from '../components/UserBeyModel'
 import OpponentBeyModel from '../components/OpponentBeyModel'
 import { Environment } from '@react-three/drei'
 import { Navbar } from '../components/NavBarFix'
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
 type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self";
+
+const BEY_OPTIONS: Record<BeyName, { label: string; img: string }> = {
+  leone_self: { label: "Leone", img: "/images/tongue.png" },
+  pegasus_self: { label: "Pegasus", img: "/images/tongue.png" },
+  leone_opp: { label: "Leone", img: "/images/tongue.png" },
+  pegasus_opp: { label: "Pegasus", img: "/images/tongue.png" },
+};
+
+const formatBeyLabel = (beyName: BeyName) => {
+  return BEY_OPTIONS[beyName]?.label ?? beyName;
+};
+
+
 
 
 
@@ -29,7 +42,7 @@ const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
 
 const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
   <div style={{ flex: 1, height: '100%' }}>
-    <Canvas camera={{ position: [0, 2, 5], fov: 60 }} shadows>
+    <Canvas camera={{ position: [0, 2, 3], fov: 60 }} shadows>
       <Environment preset="dawn" />
       <ambientLight intensity={0.3} />
       <TiltedRotator>
@@ -67,7 +80,7 @@ const ComparePage = () => {
   };
 
 
-  const leftWinProbability = 0.7; // Just an example
+  const leftWinProbability = 0.45; // Just an example
   const leftPercent = leftWinProbability * 100;
   const rightPercent = (1 - leftWinProbability) * 100;
 
@@ -79,25 +92,37 @@ const ComparePage = () => {
 
           {/* Left Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
-            {isLeftSelectorOpen && (
-              <div className="absolute top-4 left-4 bg-white text-black rounded shadow-md p-2 z-10">
-                {["leone_self", "pegasus_self"].map((bey) => (
-                  <div
-                    key={bey}
-                    className="cursor-pointer hover:bg-gray-200 px-2 py-1 rounded"
-                    onClick={() => handleLeftSelect(bey as BeyName)}
-                  >
-                    {bey.charAt(0).toUpperCase() + bey.slice(1)}
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className="flex-1 cursor-pointer" onClick={handleLeftModelClick}>
+{isLeftSelectorOpen && (
+  <div className="absolute left-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 space-y-2 border border-white/10">
+    {(["leone_self", "pegasus_self"] as BeyName[]).map((bey) => (
+      <div
+        key={bey}
+        onClick={() => handleLeftSelect(bey)}
+        className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
+      >
+        <img
+          src={BEY_OPTIONS[bey].img}
+          alt={BEY_OPTIONS[bey].label}
+          className="w-10 h-10 rounded-md object-cover border border-white/20"
+        />
+        <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
+      </div>
+    ))}
+  </div>
+)}
+
+          <div className="flex flex-col items-center gap-2 flex-1 cursor-pointer" onClick={handleLeftModelClick}>
+            <span className="text-white text-lg font-semibold">YOUR BEY</span>
+            <div className="w-full h-full">
               <SceneCanvas>
-                <UserBeyModel key={leftBey} modelName={leftBey} />
+                <Suspense fallback={null}>
+                  <UserBeyModel key={leftBey} modelName={leftBey} />
+                </Suspense>
               </SceneCanvas>
             </div>
           </div>
+          </div>
+
 
           {/* Center Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner">
@@ -106,25 +131,37 @@ const ComparePage = () => {
 
           {/* Right Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
-            {isRightSelectorOpen && (
-              <div className="absolute top-4 left-4 bg-white text-black rounded shadow-md p-2 z-10">
-                {["leone_opp", "pegasus_opp"].map((bey) => (
-                  <div
-                    key={bey}
-                    className="cursor-pointer hover:bg-gray-200 px-2 py-1 rounded"
-                    onClick={() => handleRightSelect(bey as BeyName)}
-                  >
-                    {bey.charAt(0).toUpperCase() + bey.slice(1)}
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className="flex-1 cursor-pointer" onClick={handleRightModelClick}>
-              <SceneCanvas>
-                <OpponentBeyModel key={rightBey} modelName={rightBey} />
+{isRightSelectorOpen && (
+  <div className="absolute right-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 space-y-2 border border-white/10">
+    {(["leone_opp", "pegasus_opp"] as BeyName[]).map((bey) => (
+      <div
+        key={bey}
+        onClick={() => handleRightSelect(bey)}
+        className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
+      >
+        <img
+          src={BEY_OPTIONS[bey].img}
+          alt={BEY_OPTIONS[bey].label}
+          className="w-10 h-10 rounded-md object-cover border border-white/20"
+        />
+        <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
+      </div>
+    ))}
+  </div>
+)}
 
-              </SceneCanvas>
+
+            <div className="flex flex-col items-center gap-2 flex-1 cursor-pointer" onClick={handleRightModelClick}>
+              <span className="text-white text-lg font-semibold">{formatBeyLabel(rightBey)}</span>
+              <div className="w-full h-full">
+                <SceneCanvas>
+                  <Suspense fallback={null}>
+                    <OpponentBeyModel key={rightBey} modelName={rightBey} />
+                  </Suspense>
+                </SceneCanvas>
+              </div>
             </div>
+
           </div>
         </div>
 
