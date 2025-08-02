@@ -1,7 +1,6 @@
 
-// CollectionPage.tsx
 import React from 'react';
-import { beybladeCollection } from '../data/BeyCollectionData';
+import { beybladeCollection } from '../components/BeyCollectionData';
 
 export default function CollectionPage() {
   return (
