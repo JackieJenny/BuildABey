@@ -1,24 +1,68 @@
 import BeyCarousel from "../components/BeyCarousel.tsx";
 import BeyStatsChart from "../components/BeyStatsChart.tsx";
 import { EnergyLayer, FaceBolt, SpinTrack, Tip} from "../BeybladeParts/BeybladeComponents.ts";
+import {useState} from "react";
+import PresetBeyblades from "../components/presets.ts";
 
-function CreateBeyPage() {
+export default function CreateBeyPage() {
+    const [selectedEnergy, setSelectedEnergy] = useState(EnergyLayer[0]);
+    const [selectedBolt, setSelectedBolt] = useState(FaceBolt[0]);
+    const [selectedTrack, setSelectedTrack] = useState(SpinTrack[0]);
+    const [selectedTip, setSelectedTip] = useState(Tip[0]);
+
+    const totalStats = {
+        attack:
+            selectedEnergy.attack +
+            selectedBolt.attack +
+            selectedTrack.attack +
+            selectedTip.attack,
+        defense:
+            selectedEnergy.defense +
+            selectedBolt.defense +
+            selectedTrack.defense +
+            selectedTip.defense,
+        stamina:
+            selectedEnergy.stamina +
+            selectedBolt.stamina +
+            selectedTrack.stamina +
+            selectedTip.stamina,
+    };
+
     return (
-        <div className="p-6">
-            <h1 className = "text-3xl font-bold mb-6">Craft your masterpiece</h1>
-            <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={() => {}}/>
-            <BeyCarousel title="Fusion Wheel " parts={EnergyLayer} onSelect={() => {}}/>
-            <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={() => {}}/>
-            <BeyCarousel title="Tip" parts={Tip} onSelect={() => {}}/>
+        <div className="p-6 max-w-screen-lg mx-auto">
+            <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-2">Choose a Preset</h2>
+                <div className="flex flex-wrap gap-4">
+                    {Object.entries(PresetBeyblades).map(([key, preset]) => (
+                        <button
+                            key={key}
+                            onClick={() => {
+                                setSelectedEnergy(preset.energy);
+                                setSelectedBolt(preset.bolt);
+                                setSelectedTrack(preset.track);
+                                setSelectedTip(preset.tip);
+                            }}
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                        >
+                            {preset.name}
+                        </button>
+                    ))}
+                </div>
+            </div>
 
-            <div className="my-10" />
+            <div className="p-6">
+                <h1 className="text-3xl font-bold mb-6">Craft your masterpiece</h1>
+                <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={setSelectedBolt} selectedPart={selectedBolt} />
+                <BeyCarousel title="Fusion Wheel" parts={EnergyLayer} onSelect={setSelectedEnergy} selectedPart={selectedEnergy} />
+                <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={setSelectedTrack} selectedPart={selectedTrack} />
+                <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
 
-            {/* Horizontal bar chart */}
-            <h2 className="text-2xl font-semibold mb-4">Beyblade Stats Overview</h2>
-            <BeyStatsChart />
+                <div className="my-10" />
+
+                <h2 className="text-2xl font-semibold mb-4">Beyblade Stats Overview</h2>
+                <BeyStatsChart stats={totalStats} />
+            </div>
         </div>
-
     );
 }
 
-export default CreateBeyPage;
