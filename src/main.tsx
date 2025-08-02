@@ -6,17 +6,21 @@ import LandingPage from './pages/LandingPage.tsx'
 import CreateBeyPage from './pages/CreateBeyPage.tsx'
 import SummaryPage from './pages/SummaryPage.tsx'
 import ComparePage from './pages/ComparePage.tsx'
+import Layout from './components/Layout.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  
+
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/create" element={<CreateBeyPage />} />
-        <Route path="/summary" element={<SummaryPage/>} />
-        <Route path="/compare" element={<ComparePage />} />
+        {/* Parent route wraps all children */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<LandingPage />} />
+          <Route path="create" element={<CreateBeyPage />} />
+          <Route path="summary" element={<SummaryPage />} />
+          <Route path="compare" element={<ComparePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )

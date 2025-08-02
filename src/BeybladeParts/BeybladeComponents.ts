@@ -1,6 +1,8 @@
 //Components
+
+
 export const EnergyLayer = [
-    {id: 'PegasusEnergyLayer', name: "PegasusEnergyLayer", attack: 4, defense: 1, stamina: 2},
+    {id: 'PegasusEnergyLayer', name: "PegasusEnergyLayer", attack: 4, defense: 1, stamina: 2, image: '/images/pegasus-fusion.png'},
     {id: 'LeoneEnergyLayer', name: "LeoneEnergyLayer", attack: 1, defense: 4, stamina: 2},
     {id: 'LibraEnergyLayer', name: "LibraEnergyLayer", attack: 1, defense: 2, stamina: 3},
     {id: 'LdragoEnergyLayer', name: "LdragoEnergyLayer", attack: 3, defense: 3, stamina: 2}
@@ -8,7 +10,7 @@ export const EnergyLayer = [
 ];
 
 export const FaceBolt = [
-    {id: 'PegasusFaceBolt', name: "PegasusFaceBolt", attack: 1, defense: 1, stamina: 0},
+    {id: 'PegasusFaceBolt', name: "PegasusFaceBolt", attack: 1, defense: 1, stamina: 0, image: '/images/pegasus-bolt.png'},
     {id: 'LeoneFaceBolt', name: "LeoneFaceBolt", attack: 1, defense: 2, stamina: 0},
     {id: 'LibraFaceBolt', name: "LibraFaceBolt", attack: 0, defense: 1, stamina: 1},
     {id: 'LdragoFaceBolt', name: "LdragoFaceBolt", attack: 1, defense: 1, stamina: 1}
