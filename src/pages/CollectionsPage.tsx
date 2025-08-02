@@ -23,7 +23,7 @@ export default function CollectionPage() {
     <>
       <Navbar />
       <div
-        className="flex items-center justify-center flex-col md:flex-row gap-8 p-6 w-screen h-screen relative"
+        className="flex items-center justify-center flex-col md:flex-row gap-10 p-6 w-screen h-screen relative"
         style={{
           backgroundImage: "url('/images/Background3.jpg')",
           backgroundSize: 'cover',
@@ -34,13 +34,13 @@ export default function CollectionPage() {
         {/* Left: Grid with pagination */}
         <div className="flex flex-1 flex-col justify-center items-center h-full">
           <h1 className="text-2xl font-bold mb-6 text-center">Beyblade Collection</h1>
-          <div className="grid grid-cols-3 gap-6 mb-6 w-full max-w-lg">
+          <div className="grid grid-cols-3 gap-8 mb-6 w-full max-w-lg">
             {paddedBeys.map((bey, index) => {
               const isSelected = selected?.id === bey?.id;
               return (
                 <div
                   key={bey?.id || `empty-${index}`}
-                  className={`backdrop-blur-md bg-gray-100/5 w-full h-44 rounded-xl p-4 border border-gray-500/50 shadow-lg shadow-inner
+                  className={`backdrop-blur-md bg-gray-100/5 w-40 h-40 rounded-xl p-4 border border-gray-500/50 shadow-lg shadow-inner
                     flex items-center justify-center
                     transition-transform duration-300 ${
                     bey ? 'cursor-pointer hover:scale-105' : 'bg-gray-100'
@@ -54,7 +54,7 @@ export default function CollectionPage() {
                       className="w-24 h-24 object-contain bg-white"
                     />
                   ) : (
-                    <div className="w-24 h-24 bg-transparent flex items-center justify-center text-gray-400 text-sm">
+                    <div className="w-24 h-24 bg-transparent">
                       {/* Empty slot */}
                     </div>
                   )}
@@ -90,7 +90,7 @@ export default function CollectionPage() {
               <img
                 src={selected.image}
                 alt={selected.name}
-                className="w-[30rem] h-[30rem] object-contain bg-white rounded-xl shadow-lg mb-6"
+                className="w-[40rem] h-[40rem] object-contain bg-white rounded-xl shadow-lg mb-6"
               />
               <h2 className="text-xl font-bold text-center">{selected.name}</h2>
             </>
