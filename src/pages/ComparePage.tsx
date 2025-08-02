@@ -66,6 +66,7 @@ const ComparePage = () => {
     setIsRightSelectorOpen(false);
   };
 
+
   return (
     <>
       <Navbar />
