@@ -1,6 +1,6 @@
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Part = {
     id: string;
@@ -18,14 +18,18 @@ interface Props {
 }
 
 const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect }) => {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
+        loop: true,
         slides: {
-            perView: 3,
-            spacing: 16,
+            perView: 1, // Show 1 slide always
+            spacing: 0,
         },
         mode: "snap",
         initial: 0,
         slideChanged: (s) => {
+            setSelectedIndex(s.track.details.rel);
             onSelect(parts[s.track.details.rel]);
         },
     });
@@ -35,22 +39,33 @@ const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect }) => {
     }, [parts, onSelect]);
 
     return (
-        <div className="my-6">
-            <h2 className="text-xl font-semibold mb-2">{title}</h2>
-            <div ref={sliderRef} className="keen-slider">
-                {parts.map((part) => (
-                    <div key={part.id} className="keen-slider__slide p-4">
-                        <div className="bg-gray-500 shadow rounded-lg text-center p-4">
-                            <p className="font-bold text-lg mb-1">{part.name}</p>
-                            <div className="text-sm">ATK: {part.attack}</div>
-                            <div className="text-sm">DEF: {part.defense}</div>
-                            <div className="text-sm">STM: {part.stamina}</div>
+        <div className="my-6 w-full flex items-center gap-4">
+            {/* Left: the title */}
+            <div className="w-32 shrink-0 text-right">
+                <h2 className="text-lg font-semibold">{title}</h2>
+            </div>
+
+            {/* Right: the visible carousel */}
+            <div className="overflow-hidden w-full max-w-[320px]">
+                <div ref={sliderRef} className="keen-slider">
+                    {parts.map((part) => (
+                        <div key={part.id} className="keen-slider__slide px-0 m-0">
+                            <div className="bg-gray-500 shadow rounded-lg text-center p-1 m-0">
+                                {part.image && (
+                                    <img
+                                        src={part.image}
+                                        alt={part.name}
+                                        className="w-24 h-24 mx-auto object-contain"
+                                    />
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );
+
 };
 
 export default BeyCarousel;
