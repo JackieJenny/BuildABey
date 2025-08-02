@@ -32,10 +32,11 @@ export default function CreateBeyPage() {
     return (
     <>
       <Navbar />
-      <div
-        className="min-h-dvh w-full p-6 bg-cover bg-center text-white"
+        <div
+        className="min-h-screen w-screen p-6 pt-24 bg-cover bg-center text-white"
         style={{ backgroundImage: "url('/images/Background.png')" }}
-      >
+        >
+
         <h1 className="text-3xl font-bold mb-6">Craft your masterpiece</h1>
 
         <BeyCarousel title="FaceBolt" parts={FaceBolt} onSelect={setSelectedBolt} selectedPart={selectedBolt} />
