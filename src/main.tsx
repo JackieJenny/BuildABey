@@ -9,6 +9,7 @@ import ComparePage from './pages/ComparePage.tsx'
 import CollectionsPage from './pages/CollectionsPage.tsx'
 
 import { useGLTF } from '@react-three/drei';
+import BeyGifPage from "./pages/BeyGifPage.tsx";
 
 useGLTF.preload('/models/custom.glb');
 useGLTF.preload('/models/pegasus_self.glb');
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="summary" element={<SummaryPage />} />
           <Route path="compare" element={<ComparePage />} />
           <Route path="collection" element={<CollectionsPage/>} />
+          <Routes path="animation" element={<BeyGifPage />}/ >
       </Routes>
     </BrowserRouter>
   </>
