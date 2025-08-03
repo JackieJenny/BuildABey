@@ -10,6 +10,7 @@ import CollectionsPage from './pages/CollectionsPage.tsx'
 
 import { useGLTF } from '@react-three/drei';
 
+useGLTF.preload('/models/custom.glb');
 useGLTF.preload('/models/pegasus_self.glb');
 useGLTF.preload('/models/leone_self.glb');
 useGLTF.preload('/models/pegasus_opp.glb');
