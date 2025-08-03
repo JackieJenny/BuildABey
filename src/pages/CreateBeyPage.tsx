@@ -33,7 +33,7 @@ export default function CreateBeyPage() {
         <>
             <Navbar />
             <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
-                <div className="backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner h-[1100px]">
+                <div className="backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl p-8 border border-gray-900 shadow-lg shadow-inner h-[750px]">
                     <div className="p-6">
                         <div className="flex flex-row gap-8 items-start">
                             {/* Carousels column */}
@@ -43,6 +43,9 @@ export default function CreateBeyPage() {
                                     <BeyCarousel title="Fusion Wheel" parts={EnergyLayer} onSelect={setSelectedEnergy} selectedPart={selectedEnergy} />
                                     <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={setSelectedTrack} selectedPart={selectedTrack} />
                                     <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
+                                    <div className="flex justify-center mt-4">
+                                        <button className="px-4 py-2 bg-violet-600 text-white rounded" disabled>Create Beyblade</button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -63,13 +66,21 @@ export default function CreateBeyPage() {
                                                     setSelectedTrack(preset.track);
                                                     setSelectedTip(preset.tip);
                                                 }}
-                                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                                                className="w-20 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn"
                                             >
-                                                {preset.name}
+                                                <img
+                                                    src={preset.image}
+                                                    className="w-full h-full object-contain"
+                                                    alt = {preset.name}
+
+                                                />
+
                                             </button>
                                         ))}
                                         {/* Placeholder buttons */}
-                                        <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 3</button>
+                                        <button className="w-20 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn">
+
+                                        </button>
                                         <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 4</button>
                                         <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 5</button>
                                         <button className="px-4 py-2 bg-gray-400 text-white rounded" disabled>Beyblade 6</button>
@@ -79,7 +90,6 @@ export default function CreateBeyPage() {
                                 </div>
                                 {/* Stats chart box */}
                                 <div className="w-full border-2 border-gray-400 rounded-xl p-4 bg-black/30 flex flex-col items-center">
-                                    <h2 className="text-2xl font-semibold mb-4 text-center">Beyblade Stats Overview</h2>
                                     <BeyStatsChart stats={totalStats} />
                                 </div>
                             </div>
