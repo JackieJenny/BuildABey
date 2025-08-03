@@ -43,10 +43,10 @@ export default function SummaryPage() {
 
     {/* 👉 Right Side Content */}
     <div className="w-full md:w-2/3 h-full flex flex-col justify-center text-white">
-      <div className="backdrop-blur-md bg-white/5 w-full h-[20rem] rounded-lg p-6 mb-6 shadow-lg">
+      <div className="backdrop-blur-md bg-white/5 w-full h-[20rem] rounded-lg p-6 mb-6 shadow-lg flex flex-col justify-between">
         <h2 className="text-lg font-bold mb-2">SUMMARY</h2>
         <p>Your custom Beyblade is ready! Review its stats and save it to your collection.</p>
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-auto justify-center">
           <button 
           onClick={() => navigate('/collection')}
           className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
