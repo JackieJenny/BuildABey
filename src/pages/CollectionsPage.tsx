@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
-import { beybladeCollection } from '../components/BeyCollectionData';
-import { Navbar } from '../components/NavBarFix';
-import UserBeyModel from '../components/UserBeyModel';
-import { Environment } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { useNavigate } from 'react-router-dom';  // <-- import navigate
+import React, { useState } from "react";
+import { beybladeCollection } from "../components/BeyCollectionData";
+import { Navbar } from "../components/NavBarFix";
+import UserBeyModel from "../components/UserBeyModel";
+import { Environment } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useNavigate } from "react-router-dom"; // <-- import navigate
 
-type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp" | "custom_self";
+type BeyName =
+  | "leone_self"
+  | "leone_opp"
+  | "pegasus_opp"
+  | "pegasus_self"
+  | "ldrago_self"
+  | "ldrago_opp"
+  | "custom";
 
 const MODEL_NAME_MAP: Record<number, string> = {
-  1: "custom",          // Custom Bey 1
-  2: "pegasus_self",    // Pegasus
-  3: "leone_self",      // Leone Storm
-  4: "ldrago_self",     // L-Drago Destroy
-  5: "custom",          // Capricorn or other
+  1: "custom", // Custom Bey 1
+  2: "pegasus_self", // Pegasus
+  3: "leone_self", // Leone Storm
+  4: "ldrago_self", // L-Drago Destroy
+  5: "custom", // Capricorn or other
 };
 
 const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
@@ -36,16 +43,14 @@ const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
 };
 
 const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ width: '100%', height: '100%' }}>
+  <div style={{ width: "100%", height: "100%" }}>
     <Canvas
       camera={{ position: [0, 2, 3], fov: 60 }}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: "100%", height: "100%" }}
     >
       <Environment preset="sunset" />
       <ambientLight intensity={0.3} />
-      <TiltedRotator>
-        {children}
-      </TiltedRotator>
+      <TiltedRotator>{children}</TiltedRotator>
     </Canvas>
   </div>
 );
@@ -53,7 +58,7 @@ const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
 const PAGE_SIZE = 9; // 3x3 grid
 
 export default function CollectionPage() {
-  const navigate = useNavigate();  // <-- get navigate
+  const navigate = useNavigate(); // <-- get navigate
   const [selected, setSelected] = useState(beybladeCollection[0] || null);
   const [page, setPage] = useState(0);
 
@@ -69,8 +74,8 @@ export default function CollectionPage() {
   const totalPages = Math.ceil(beybladeCollection.length / PAGE_SIZE);
 
   // Handler for Compare button click
-  const handleCompare = (bey: typeof beybladeCollection[number]) => {
-    const modelName = MODEL_NAME_MAP[bey.id] ?? 'custom_self';
+  const handleCompare = (bey: (typeof beybladeCollection)[number]) => {
+    const modelName = MODEL_NAME_MAP[bey.id] ?? "custom_self";
     navigate(`/compare?model=${modelName}`);
   };
 
@@ -81,14 +86,16 @@ export default function CollectionPage() {
         className="flex items-center justify-center flex-col md:flex-row gap-10 p-6 w-screen h-screen relative"
         style={{
           backgroundImage: "url('/images/Background3.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Left: Grid with pagination */}
         <div className="flex flex-1 flex-col justify-center items-center h-full">
-          <h1 className="text-2xl font-bold mb-6 text-center">Beyblade Collection</h1>
+          <h1 className="text-2xl font-bold mb-6 text-center">
+            Beyblade Collection
+          </h1>
           <div className="grid grid-cols-3 gap-8 mb-6 w-full max-w-lg">
             {paddedBeys.map((bey, index) => {
               const isSelected = selected?.id === bey?.id;
@@ -97,8 +104,10 @@ export default function CollectionPage() {
                   key={bey?.id || `empty-${index}`}
                   className={`backdrop-blur-md bg-gray-100/5 w-40 h-40 rounded-xl p-4 border border-gray-500/50 shadow-lg shadow-inner
                     flex flex-col items-center justify-center
-                    transition-transform duration-300 ${bey ? 'cursor-pointer hover:scale-105' : 'bg-gray-100'}
-                    ${isSelected ? 'ring-2 ring-purple-500' : ''}`}
+                    transition-transform duration-300 ${
+                      bey ? "cursor-pointer hover:scale-105" : "bg-gray-100"
+                    }
+                    ${isSelected ? "ring-2 ring-purple-500" : ""}`}
                   {...(bey && { onClick: () => setSelected(bey) })}
                 >
                   {bey ? (
@@ -153,10 +162,14 @@ export default function CollectionPage() {
             <>
               <SceneCanvas>
                 <Suspense fallback={null}>
-                  <UserBeyModel modelName={MODEL_NAME_MAP[selected.id] ?? 'custom_self'} />
+                  <UserBeyModel
+                    modelName={MODEL_NAME_MAP[selected.id] ?? "custom_self"}
+                  />
                 </Suspense>
               </SceneCanvas>
-              <h2 className="text-xl font-bold text-center mt-6 text-white">{selected.name}</h2>
+              <h2 className="text-xl font-bold text-center mt-6 text-white">
+                {selected.name}
+              </h2>
             </>
           ) : (
             <div className="text-gray-500 text-center">

@@ -136,7 +136,14 @@ export default function CreateBeyPage() {
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
               </div>
     </>
   );
 }
+=======
+            </div>n
+        </>
+    );
+}
+>>>>>>> 6b2a1e793a87c029cd0664aa4cb85314ec82021e
