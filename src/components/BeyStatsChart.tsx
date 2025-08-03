@@ -32,7 +32,7 @@ export default function BeyStatsChart({ stats }: Props) {
               margin={{ top: 10, right: 30, left: 40, bottom: 10 }}
               barCategoryGap={20}
           >
-            <XAxis type="number" domain={[0, 10]} hide />
+            <XAxis type="number" domain={[0, 85]} hide />
             <YAxis
                 type="category"
                 dataKey="name"
