@@ -18,8 +18,9 @@ export default function SummaryPage() {
   {/* 👁 Parent Glass Box - wraps left and right */}
   <div className="relative w-full h-[90%] mx-10 backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 flex md:flex-row flex-col p-8 gap-6 shadow-lg">
     
-    {/* 👁 Invisible Spacer for Floating Left Box */}
-    <div className="w-full md:w-1/3 h-full" />
+  {/* 👁 Invisible Spacer for Floating Left Box */}
+  <div className="w-full md:w-[36rem] h-full" /> {/* 🔥 Was md:w-1/3 */}
+
 
     {/* 👉 Right Side Content */}
     <div className="w-full md:w-2/3 h-full flex flex-col justify-center text-white">
@@ -39,8 +40,10 @@ export default function SummaryPage() {
   </div>
 
   {/* 🧊 Floating Left Glass Box */}
-  <div className="absolute left-12 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 shadow-xl w-[24rem] h-[85%] p-6 flex flex-col justify-between items-center text-white">
-    
+<div className="absolute left-12 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md bg-white/10 
+  rounded-2xl border border-white/20 shadow-xl w-[32rem] h-[85%] p-6 
+  flex flex-col justify-between items-center text-white"> {/* 🔥 Was w-[24rem] */}
+  
     {/* Beyblade Image */}
     <div className="w-full flex justify-center">
       <img src="/images/completeRenders/customfull.png" alt="Saved Beyblade" className="w-64 h-64 object-cover" />
