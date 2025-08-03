@@ -49,7 +49,9 @@ export default function CreateBeyPage() {
     return (
         <>
             <Navbar />
-            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center overflow-hidden">
+            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
+        overflow-hidden">
+
                 <div
                     className={`backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl p-8 
                     border border-gray-900 shadow-lg shadow-inner h-[750px]
