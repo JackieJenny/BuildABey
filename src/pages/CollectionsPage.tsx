@@ -7,18 +7,16 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-
-
+import { useNavigate } from 'react-router-dom';  // <-- import navigate
 
 type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp" | "custom_self";
 
-
 const MODEL_NAME_MAP: Record<number, string> = {
-  1: "custom",          // Custom Bey 1 -> 'custom' (you might want a default model for custom)
+  1: "custom",          // Custom Bey 1
   2: "pegasus_self",    // Pegasus
   3: "leone_self",      // Leone Storm
-  4: "ldrago_self",     // L-Drago Destroy (note your original uses "ldrago_self" not "ldragofull")
-  5: "custom",  // Capricorn - you'll need to add this to your BEY_PARTS and models if you want to support it
+  4: "ldrago_self",     // L-Drago Destroy
+  5: "custom",          // Capricorn or other
 };
 
 const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
@@ -52,10 +50,10 @@ const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-
 const PAGE_SIZE = 9; // 3x3 grid
 
 export default function CollectionPage() {
+  const navigate = useNavigate();  // <-- get navigate
   const [selected, setSelected] = useState(beybladeCollection[0] || null);
   const [page, setPage] = useState(0);
 
@@ -69,6 +67,12 @@ export default function CollectionPage() {
   }
 
   const totalPages = Math.ceil(beybladeCollection.length / PAGE_SIZE);
+
+  // Handler for Compare button click
+  const handleCompare = (bey: typeof beybladeCollection[number]) => {
+    const modelName = MODEL_NAME_MAP[bey.id] ?? 'custom_self';
+    navigate(`/compare?model=${modelName}`);
+  };
 
   return (
     <>
@@ -92,24 +96,30 @@ export default function CollectionPage() {
                 <div
                   key={bey?.id || `empty-${index}`}
                   className={`backdrop-blur-md bg-gray-100/5 w-40 h-40 rounded-xl p-4 border border-gray-500/50 shadow-lg shadow-inner
-                    flex items-center justify-center
-                    transition-transform duration-300 ${
-                    bey ? 'cursor-pointer hover:scale-105' : 'bg-gray-100'
-                  } ${isSelected ? 'ring-2 ring-purple-500' : ''} flex items-center justify-center h-32`}
+                    flex flex-col items-center justify-center
+                    transition-transform duration-300 ${bey ? 'cursor-pointer hover:scale-105' : 'bg-gray-100'}
+                    ${isSelected ? 'ring-2 ring-purple-500' : ''}`}
                   {...(bey && { onClick: () => setSelected(bey) })}
                 >
                   {bey ? (
-                    <img
-                      src={bey.image}
-                      alt={bey.name}
-
-                      className="w-25 h-30 object-cover bg-transparent"
-
-                    />
+                    <>
+                      <img
+                        src={bey.image}
+                        alt={bey.name}
+                        className="w-25 h-30 object-cover bg-transparent"
+                      />
+                      <button
+                        className="mt-2 px-3 py-1 bg-purple-600 text-white rounded hover:bg-purple-700 transition"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent selecting bey when clicking compare
+                          handleCompare(bey);
+                        }}
+                      >
+                        Compare
+                      </button>
+                    </>
                   ) : (
-                    <div className="w-24 h-24 bg-transparent">
-                      {/* Empty slot */}
-                    </div>
+                    <div className="w-24 h-24 bg-transparent" />
                   )}
                 </div>
               );
@@ -136,13 +146,13 @@ export default function CollectionPage() {
             </button>
           </div>
         </div>
-                {/* Right: 3D Model View */}
+
+        {/* Right: 3D Model View */}
         <div className="flex flex-1 flex-col justify-center items-center h-full">
           {selected ? (
             <>
               <SceneCanvas>
                 <Suspense fallback={null}>
-                  {/* Pass the modelName or id so your model component loads the right GLB */}
                   <UserBeyModel modelName={MODEL_NAME_MAP[selected.id] ?? 'custom_self'} />
                 </Suspense>
               </SceneCanvas>

@@ -57,6 +57,12 @@ const BEY_PARTS: Record<string, { energy: string; face: string; track: string; t
     track: 'LdragoSpinTrack',
     tip: 'LdragoTip'
   },
+    custom: {
+    energy: 'PegasusEnergyLayer',
+    face: 'PegasusFaceBolt',
+    track: 'PegasusSpinTrack',
+    tip: 'PegasusTip'
+  },
 
 };
 
@@ -99,6 +105,8 @@ const BEY_OPTIONS: Record<BeyName, { label: string; img: string }> = {
   pegasus_opp: { label: "Pegasus", img: "/images/completeRenders/pegasusfull.png" },
   ldrago_self:  { label: "L Drago", img: "/images/completeRenders/ldragofull.png" },
   ldrago_opp: { label: "L Drago", img: "/images/completeRenders/ldragofull.png" },
+  custom: { label: "Custom", img: "/images/completeRenders/customfull.png" },  // Add this, or use your actual image path
+
 };
 
 const formatBeyLabel = (beyName: BeyName) => {
@@ -194,7 +202,7 @@ const ComparePage = () => {
       msOverflowStyle: 'none',
     }}
   >
-    {(["leone_self", "pegasus_self", "ldrago_self"] as BeyName[]).map((bey) => (
+    {(["leone_self", "pegasus_self", "ldrago_self", "custom"] as BeyName[]).map((bey) => (
       <div
         key={bey}
         onClick={() => handleLeftSelect(bey)}
