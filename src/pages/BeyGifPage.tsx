@@ -1,31 +1,41 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/NavBarFix.tsx";
 
 export default function BeyGifPage() {
     const navigate = useNavigate();
+    const [fadeIn, setFadeIn] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            navigate("/compare?model=custom");
-        }, 2000); // Adjust delay as needed
-        return () => clearTimeout(timer);
+        // Delay fade-in by 100ms (adjust as needed)
+        const fadeInTimer = setTimeout(() => setFadeIn(true), 500);
+
+        const fadeOutTimer = setTimeout(() => {
+            setFadeOut(true);
+            setTimeout(() => {
+                navigate("/compare?model=custom");
+            }, 700); // match fade-out duration
+        }, 5300);
+
+        return () => {
+            clearTimeout(fadeInTimer);
+            clearTimeout(fadeOutTimer);
+        };
     }, [navigate]);
+
+    const fadeClass = `transition-opacity duration-700 ${fadeIn && !fadeOut ? "opacity-100" : "opacity-0"}`;
 
     return (
         <>
             <Navbar />
-            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
-                <div className="flex flex-col items-center justify-center w-full h-full">
-                    <h1 className="mb-8 text-3xl">text</h1>
-                    <div className="bg-black/30 rounded-xl p-8">
-                        <img
-                            src="/images/beyAnimation.gif"
-                            alt="Building Beyblade..."
-                            className="w-64 h-64 object-contain animate-fade-in"
-                        />
-                    </div>
-                </div>
+            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')]
+        overflow-hidden">
+                <img
+                    src="/images/beyAnimation.gif"
+                    alt="Building Beyblade..."
+                    className={`w-full h-full object-cover absolute top-0 left-0 ${fadeClass}`}
+                />
             </div>
         </>
     );
