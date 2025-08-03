@@ -7,7 +7,8 @@ import { Navbar } from "../components/NavBarFix.tsx";
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateBeyPage() {
-
+    const [fadeIn, setFadeIn] = useState(false);
+    const [moveUp, setMoveUp] = useState(false);
     const [selectedEnergy, setSelectedEnergy] = useState(EnergyLayer[0]);
     const [selectedBolt, setSelectedBolt] = useState(FaceBolt[0]);
     const [selectedTrack, setSelectedTrack] = useState(SpinTrack[0]);
@@ -15,9 +16,16 @@ export default function CreateBeyPage() {
 
     const navigate = useNavigate();
 
-    const handleBuildClick = () => {
-        navigate('/compare?model=custom');
-    };
+     const handleBuildClick = () => {
+    setMoveUp(true); // trigger leave animation
+    setTimeout(() => {
+      navigate('/compare?model=custom');
+    }, 700); // match animation duration
+  };
+     useEffect(() => {
+    // Trigger move-in animation after component mounts
+    setFadeIn(true);
+  }, []);
 
     const totalStats = {
         attack:
@@ -40,8 +48,20 @@ export default function CreateBeyPage() {
     return (
         <>
             <Navbar />
-            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
-                <div className="backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl p-8 border border-gray-900 shadow-lg shadow-inner h-[750px]">
+            <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
+        overflow-hidden">
+                <div
+  className={`backdrop-blur-md bg-glassgrey/30 w-5/6 max-w-screen-2xl p-8 
+  border border-gray-900 shadow-lg shadow-inner h-[750px]
+  transform transition-all duration-700 ease-in-out
+  ${
+    moveUp
+      ? '-translate-y-full opacity-0' // Move out has priority
+      : fadeIn
+      ? 'translate-y-0 opacity-100' // Move in
+      : 'translate-y-full opacity-0' // Initial hidden state
+  }`}
+>
                     <div className="p-6">
                         <div className="flex flex-row gap-8 items-start">
                             {/* Carousels column */}
@@ -116,7 +136,14 @@ export default function CreateBeyPage() {
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+              </div>
+    </>
+  );
+}
+=======
             </div>n
         </>
     );
 }
+>>>>>>> 6b2a1e793a87c029cd0664aa4cb85314ec82021e
