@@ -94,3 +94,14 @@ button:focus-visible {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
   border: 1px solid rgba(255,255,255,0.12);
 }
+
+    .clipped-corners {
+      clip-path: polygon(
+        0 15px,    /* Top-left start (after clip) */
+        15px 0,    /* Top-left end (after clip) */
+        100% 0,    /* Top-right */
+        100% calc(100% - 15px), /* Bottom-right start (before clip) */
+        calc(100% - 15px) 100%, /* Bottom-right end (after clip) */
+        0 100%     /* Bottom-left */
+      );
+    }
