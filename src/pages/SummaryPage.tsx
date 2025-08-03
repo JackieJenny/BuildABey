@@ -45,11 +45,15 @@ export default function SummaryPage() {
     <div className="w-full md:w-2/3 h-full flex flex-col justify-center text-white">
       <div className="backdrop-blur-md bg-white/5 w-full h-[20rem] rounded-lg p-6 mb-6 shadow-lg flex flex-col justify-between">
         <h2 className="text-lg font-bold mb-2">SUMMARY</h2>
-        <p>Your custom Beyblade is ready! Review its stats and save it to your collection.</p>
+        <p>This custom Beyblade is an Attack type built for raw power, featuring the L-Drago bolt for aggressive flair, the Leone fusion wheel and spin track for added stability, 
+          and the Pegasus performance tip to maximize speed and offensive movement. With a massive 88 Attack, it delivers explosive hits capable of quickly destabilizing opponents, 
+          while its low 10 Defense leaves it vulnerable to counterstrikes. The 51 Stamina is respectable for an Attack type, allowing it to maintain spin longer than most purely offensive builds. 
+          Overall, this is a high-risk, high-reward Beyblade that excels at overwhelming foes with sheer force but must strike decisively before its lack of defense becomes a liability.
+        </p>
         <div className="flex gap-4 mt-auto justify-center">
           <button 
           onClick={() => navigate('/collection')}
-          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+          className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
             Save & Finish
           </button>
         </div>
@@ -78,7 +82,7 @@ export default function SummaryPage() {
           {/* Stats */}
           <div className="w-full mt-4">
             <ul className="text-xl font-semibold space-y-2">
-              <li>TYPE: STAMINA</li>
+              <li>TYPE: ATTACK</li>
               <li>BOLT: L-DRAGO</li>
               <li>FUSION WHEEL: LEONE</li>
               <li>SPIN TRACK: LEONE</li>
