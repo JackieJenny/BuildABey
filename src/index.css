@@ -95,13 +95,43 @@ button:focus-visible {
   border: 1px solid rgba(255,255,255,0.12);
 }
 
-    .clipped-corners {
-      clip-path: polygon(
-        0 15px,    /* Top-left start (after clip) */
-        15px 0,    /* Top-left end (after clip) */
-        100% 0,    /* Top-right */
-        100% calc(100% - 15px), /* Bottom-right start (before clip) */
-        calc(100% - 15px) 100%, /* Bottom-right end (after clip) */
-        0 100%     /* Bottom-left */
-      );
-    }
+
+/* Comes from right into center */
+.enter-animation {
+  transform: translateX(-500px);  /* start off-screen to the right */
+  opacity: 0;
+  animation: enter 1s ease-out forwards;
+}
+@keyframes enter {
+  to {
+    transform: translateX(0);   /* move to normal position */
+    opacity: 1;
+  }
+}
+
+/* Comes from left into center */
+.enter-left-animation {
+  transform: translateX(500px);  /* start off-screen to the left */
+  opacity: 0;
+  animation: enter-left 1s ease-out forwards;
+}
+@keyframes enter-left {
+  to {
+    transform: translateX(0);    /* move to normal position */
+    opacity: 1;
+  }
+}
+
+/* Comes from bottom into center */
+.topdown-animation {
+  transform: translateY(-500px);  /* start off-screen from the bottom */
+  opacity: 0;
+  animation: topdown 0.7s ease-out forwards;
+}
+
+@keyframes topdown {
+  to {
+    transform: translateY(0);    /* move to its normal position */
+    opacity: 1;
+  }
+}

@@ -1,6 +1,8 @@
 import { Navbar } from "../components/NavBarFix.tsx";
+import { useNavigate } from 'react-router-dom';
 
 export default function SummaryPage() {
+  const navigate = useNavigate()
   return (
     <>
         <Navbar />
