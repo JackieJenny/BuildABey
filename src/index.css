@@ -51,9 +51,9 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  background-color: #535bf2;
 }
 button:hover {
   border-color: #646cff;
@@ -83,4 +83,12 @@ button:focus-visible {
   height: 100vh;
   position: relative;
   color: white;
+}
+
+.glass-btn {
+  background: rgba(120, 120, 120, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
 }

@@ -51,7 +51,9 @@ export default function CollectionPage() {
                     <img
                       src={bey.image}
                       alt={bey.name}
-                      className="w-50 h-50 object-contain bg-transparent"
+
+                      className="w-25 h-30 object-cover bg-transparent"
+
                     />
                   ) : (
                     <div className="w-24 h-24 bg-transparent">
@@ -90,7 +92,7 @@ export default function CollectionPage() {
               <img
                 src={selected.image}
                 alt={selected.name}
-                className="w-[40rem] h-[40rem] object-contain bg-white rounded-xl shadow-lg mb-6"
+                className="w-[40rem] h-[40rem] object-contain bg-transparent rounded-xl shadow-lg mb-6"
               />
               <h2 className="text-xl font-bold text-center">{selected.name}</h2>
             </>
