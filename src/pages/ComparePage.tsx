@@ -7,9 +7,11 @@ import { Suspense, useState } from "react";
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { EnergyLayer, FaceBolt, SpinTrack, Tip } from '../BeybladeParts/BeybladeComponents';
+import { useSearchParams } from 'react-router-dom';
 
 
-type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp";
+
+type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp" | "custom";
 
 type StatBlock = {
   attack: number;
@@ -55,6 +57,7 @@ const BEY_PARTS: Record<string, { energy: string; face: string; track: string; t
     track: 'LdragoSpinTrack',
     tip: 'LdragoTip'
   },
+
 };
 
 const findStats = (partList: any[], id: string): StatBlock => {

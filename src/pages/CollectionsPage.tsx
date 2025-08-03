@@ -1,6 +1,57 @@
 import React, { useState } from 'react';
 import { beybladeCollection } from '../components/BeyCollectionData';
 import { Navbar } from '../components/NavBarFix';
+import UserBeyModel from '../components/UserBeyModel';
+import { Environment } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+
+
+
+type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp" | "custom_self";
+
+
+const MODEL_NAME_MAP: Record<number, string> = {
+  1: "custom",          // Custom Bey 1 -> 'custom' (you might want a default model for custom)
+  2: "pegasus_self",    // Pegasus
+  3: "leone_self",      // Leone Storm
+  4: "ldrago_self",     // L-Drago Destroy (note your original uses "ldrago_self" not "ldragofull")
+  5: "custom",  // Capricorn - you'll need to add this to your BEY_PARTS and models if you want to support it
+};
+
+const TiltedRotator = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<any>();
+
+  useFrame(() => {
+    if (ref.current) {
+      ref.current.rotation.y += 0.01; // Continuous spin
+    }
+  });
+
+  return (
+    <group rotation={[0.2, 0, 0.2]} ref={ref}>
+      {children}
+    </group>
+  );
+};
+
+const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ width: '100%', height: '100%' }}>
+    <Canvas
+      camera={{ position: [0, 2, 3], fov: 60 }}
+      style={{ width: '100%', height: '100%' }}
+    >
+      <Environment preset="sunset" />
+      <ambientLight intensity={0.3} />
+      <TiltedRotator>
+        {children}
+      </TiltedRotator>
+    </Canvas>
+  </div>
+);
+
 
 const PAGE_SIZE = 9; // 3x3 grid
 
@@ -85,16 +136,17 @@ export default function CollectionPage() {
             </button>
           </div>
         </div>
-        {/* Right: Enlarged selected beyblade */}
+                {/* Right: 3D Model View */}
         <div className="flex flex-1 flex-col justify-center items-center h-full">
           {selected ? (
             <>
-              <img
-                src={selected.image}
-                alt={selected.name}
-                className="w-[40rem] h-[40rem] object-contain bg-transparent rounded-xl shadow-lg mb-6"
-              />
-              <h2 className="text-xl font-bold text-center">{selected.name}</h2>
+              <SceneCanvas>
+                <Suspense fallback={null}>
+                  {/* Pass the modelName or id so your model component loads the right GLB */}
+                  <UserBeyModel modelName={MODEL_NAME_MAP[selected.id] ?? 'custom_self'} />
+                </Suspense>
+              </SceneCanvas>
+              <h2 className="text-xl font-bold text-center mt-6 text-white">{selected.name}</h2>
             </>
           ) : (
             <div className="text-gray-500 text-center">
