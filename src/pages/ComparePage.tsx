@@ -261,7 +261,7 @@ const ComparePage = () => {
 {/* Center Box */}
 <div className={`backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col justify-center items-center text-white relative
                 ${fadeIn ? 'topdown-animation' : ''}`}>
-  <h2 className="text-xl font-bold mb-20">Stat Comparison</h2>
+  <h2 className="text-xl font-bold mb-20">STATISTICS</h2>
 
   <div className="w-full text-xl space-y-15">
     {["attack", "defense", "stamina"].map((stat) => (
@@ -332,11 +332,12 @@ const ComparePage = () => {
       
       {/* LEFT BAR */}
       <div
-        className="bg-white h-full transition-all duration-500"
+        className="bg-violet-400 h-full transition-all duration-500"
         style={{
-          width: `${leftPercent / 2}%`,
+          width: `${leftPercent}%`,
           marginRight: '2px',
           borderRadius: '9999px',
+          opacity: leftPercent >= rightPercent ? 1 : 0.3,
         }}
       />
 
@@ -345,11 +346,12 @@ const ComparePage = () => {
 
       {/* RIGHT BAR */}
       <div
-        className="bg-white h-full transition-all duration-500"
+        className="bg-rose-400 h-full transition-all duration-500"
         style={{
-          width: `${rightPercent / 2}%`,
+          width: `${rightPercent}%`,
           marginLeft: '2px',
           borderRadius: '9999px',
+          opacity: rightPercent >= leftPercent ? 1 : 0.3,
         }}
       />
     </div>

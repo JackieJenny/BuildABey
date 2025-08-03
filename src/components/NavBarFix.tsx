@@ -12,7 +12,7 @@ export const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full z-50 group">
       {/* Thin hover area (always visible) */}
-      <div className="h-8 w-full bg-transparent"></div>
+      <div className="h-5 w-full bg-transparent"></div>
 
       {/* Actual navbar slides down */}
       <nav
