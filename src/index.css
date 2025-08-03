@@ -94,3 +94,44 @@ button:focus-visible {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
   border: 1px solid rgba(255,255,255,0.12);
 }
+
+
+/* Comes from right into center */
+.enter-animation {
+  transform: translateX(-500px);  /* start off-screen to the right */
+  opacity: 0;
+  animation: enter 1s ease-out forwards;
+}
+@keyframes enter {
+  to {
+    transform: translateX(0);   /* move to normal position */
+    opacity: 1;
+  }
+}
+
+/* Comes from left into center */
+.enter-left-animation {
+  transform: translateX(500px);  /* start off-screen to the left */
+  opacity: 0;
+  animation: enter-left 1s ease-out forwards;
+}
+@keyframes enter-left {
+  to {
+    transform: translateX(0);    /* move to normal position */
+    opacity: 1;
+  }
+}
+
+/* Comes from bottom into center */
+.topdown-animation {
+  transform: translateY(-500px);  /* start off-screen from the bottom */
+  opacity: 0;
+  animation: topdown 0.7s ease-out forwards;
+}
+
+@keyframes topdown {
+  to {
+    transform: translateY(0);    /* move to its normal position */
+    opacity: 1;
+  }
+}

@@ -3,7 +3,7 @@ import UserBeyModel from '../components/UserBeyModel'
 import OpponentBeyModel from '../components/OpponentBeyModel'
 import { Environment } from '@react-three/drei'
 import { Navbar } from '../components/NavBarFix'
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { EnergyLayer, FaceBolt, SpinTrack, Tip } from '../BeybladeParts/BeybladeComponents';
@@ -162,9 +162,19 @@ const ComparePage = () => {
   const initialLeftModel = (searchParams.get("model") as BeyName) ?? "pegasus_self";
   const [leftBey, setLeftBey] = useState<BeyName>(initialLeftModel);
   const [isLeftSelectorOpen, setIsLeftSelectorOpen] = useState(false);
-
   const [rightBey, setRightBey] = useState<BeyName>("pegasus_opp");
   const [isRightSelectorOpen, setIsRightSelectorOpen] = useState(false);
+  const [moveUp, setMoveUp] = useState(false)
+  const [fadeIn, setFadeIn] = useState(false)
+  useEffect(() => {
+      // Trigger fade-in for title when component mounts
+      setFadeIn(true)
+    }, [])
+  
+    const handleNext = () => {
+      setMoveUp(true)
+      setTimeout(() => navigate('/summary'), 500) // matches transition duration
+    }
 
   const handleLeftModelClick = () => {
     setIsLeftSelectorOpen(!isLeftSelectorOpen);
@@ -191,20 +201,20 @@ const ComparePage = () => {
 
   const leftPercent = leftWinProbability * 100;
   const rightPercent = (1 - leftWinProbability) * 100;
-  const handleNext = () => {
-    setTimeout(() => navigate('/summary'), 500) // matches transition duration
-  }
 
   return (
     <>
       <Navbar />
       <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
         overflow-hidden">
-        <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
+        <div className="flex items-end justify-center gap-10 w-full max-w-[1400px]">
 
           {/* Left Box */}
-          <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
-           
+        <div
+  className={`backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 
+              border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative 
+              ${fadeIn ? 'enter-animation' : ''}`}
+>
 {isLeftSelectorOpen && (
   <div
     className="absolute left-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 border border-white/10"
@@ -234,8 +244,6 @@ const ComparePage = () => {
   </div>
 )}
 
-
-
           <div className="flex flex-col items-center gap-2 flex-1 cursor-pointer" onClick={handleLeftModelClick}>
             <span className="text-white text-lg font-semibold">YOUR BEY</span>
             <div className="w-full h-full">
@@ -251,10 +259,11 @@ const ComparePage = () => {
 
           {/* Center Box */}
 {/* Center Box */}
-<div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col justify-center items-center text-white space-y-4">
-  <h2 className="text-xl font-bold mb-4">Stat Comparison</h2>
+<div className={`backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col justify-center items-center text-white relative
+                ${fadeIn ? 'topdown-animation' : ''}`}>
+  <h2 className="text-xl font-bold mb-20">Stat Comparison</h2>
 
-  <div className="w-full text-sm space-y-2">
+  <div className="w-full text-xl space-y-15">
     {["attack", "defense", "stamina"].map((stat) => (
       <div key={stat} className="flex justify-between items-center">
         <span className="w-20 capitalize">{stat}</span>
@@ -268,7 +277,10 @@ const ComparePage = () => {
 
 
           {/* Right Box */}
-          <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
+          <div className={`backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col 
+          relative 
+              ${fadeIn ? 'enter-left-animation' : ''}`}
+          >
           
   {isRightSelectorOpen && (
     <div
@@ -356,7 +368,7 @@ const ComparePage = () => {
             Confirm
           </button>
 
-
+        
 
       </div>
     </>
