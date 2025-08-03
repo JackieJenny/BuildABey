@@ -53,20 +53,20 @@ const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect, selectedPart }) 
         <div className="-my-5 w-full flex items-center gap-0">
             {/* Left: the title */}
             <div className="w-32 shrink-0 text-right">
-                <h2 className="text-lg font-semibold">{title}</h2>
+                <h2 className="text-sm font-semibold">{title}</h2>
             </div>
 
             {/* Right: the visible carousel */}
             <div className="overflow-hidden w-full max-w-[340px]">
                 <div ref={sliderRef} className="keen-slider">
                     {parts.map((part) => (
-                        <div key={part.id} className="keen-slider__slide px-10 m-0">
-                            <div className="rounded-lg text-center p-1 m-0">
+                        <div key={part.id} className="keen-slider__slide px-8 m-0">
+                            <div className="rounded-lg text-center p-2 m-0">
                                 {part.image && (
                                     <img
                                         src={part.image}
                                         alt={part.name}
-                                        className="w-60 h-55 mx-auto object-contain"
+                                        className="w-48 48 mx-auto object-contain"
                                         
                                     />
                                 )}
