@@ -100,10 +100,25 @@ export const calculateWinProbability = (leftBey: BeyName, rightBey: BeyName): nu
   const rightWeighted =
     0.5 * right.attack + 0.3 * right.defense + 0.2 * right.stamina;
 
+  // Prevent division by zero
   if (leftWeighted + rightWeighted === 0) return 0.5;
 
-  return leftWeighted / (leftWeighted + rightWeighted);
+  // Optional: normalize scores by max possible weighted sum
+  const maxWeightedSum = 100 * 0.5 + 100 * 0.3 + 100 * 0.2; // = 100
+
+  const leftNorm = leftWeighted / maxWeightedSum;
+  const rightNorm = rightWeighted / maxWeightedSum;
+
+  const power = 3; // Adjust power for polarization effect (2, 3, 4, etc.)
+
+  // Raise to power to exaggerate differences
+  const leftPowered = Math.pow(leftNorm, power);
+  const rightPowered = Math.pow(rightNorm, power);
+
+  // Return probability scaled with power
+  return leftPowered / (leftPowered + rightPowered);
 };
+
 
 
 const BEY_OPTIONS: Record<BeyName, { label: string; img: string }> = {
