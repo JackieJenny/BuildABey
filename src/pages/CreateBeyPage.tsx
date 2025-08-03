@@ -6,7 +6,6 @@ import PresetBeyblades from "../components/presets.ts";
 import { Navbar } from "../components/NavBarFix.tsx";
 import { useNavigate } from 'react-router-dom';
 
-
 export default function CreateBeyPage() {
     const [selectedEnergy, setSelectedEnergy] = useState(EnergyLayer[0]);
     const [selectedBolt, setSelectedBolt] = useState(FaceBolt[0]);
@@ -16,9 +15,8 @@ export default function CreateBeyPage() {
     const navigate = useNavigate();
 
     const handleBuildClick = () => {
-    navigate('/compare?model=custom');
+        navigate('/compare?model=custom');
     };
-
 
     const totalStats = {
         attack:
@@ -54,23 +52,28 @@ export default function CreateBeyPage() {
                                     <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
                                     <div className="flex justify-center mt-4">
                                         <button
-                                        onClick={() => navigate('/compare?model=custom')}
-                                        className="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition"
+                                            onClick={handleBuildClick}
+                                            className="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition"
                                         >
-                                        Create Beyblade
+                                            Create Beyblade
                                         </button>
                                     </div>
                                 </div>
-
                             </div>
                             {/* Presets and Stats column */}
-
-
                             <div className="flex flex-col items-center min-w-[340px] gap-8">
                                 {/* Presets box */}
                                 <div className="w-full border-2 border-gray-400 rounded-xl p-4 bg-black/30">
-                                    <h2 className="text-2xl font-bold mb-2 text-center">Presets</h2>
-                                    <div className="flex flex-wrap gap-4 justify-center">
+                                    <h2 className="text-2xl font-bold mb-2 text-center pb-2">Presets</h2>
+                                    <div className="flex justify-center mb-8 w-full">
+                                        <input
+                                            type="text"
+                                            placeholder="Search presets..."
+                                            className="w-full px-4 py-2 rounded-lg border border-gray-400 bg-black/20 text-white focus:outline-none focus:border-blue-500 transition"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div className="flex flex-wrap gap-8 justify-center pb-7.5">
                                         {Object.entries(PresetBeyblades).map(([key, preset]) => (
                                             <button
                                                 key={key}
@@ -80,60 +83,28 @@ export default function CreateBeyPage() {
                                                     setSelectedTrack(preset.track);
                                                     setSelectedTip(preset.tip);
                                                 }}
-                                                className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn"
+                                                className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn p-4"
                                             >
                                                 <img
                                                     src={preset.image}
                                                     className="w-full h-full object-cover"
-
                                                 />
-
                                             </button>
                                         ))}
                                         {/* Placeholder buttons */}
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                        <img
-                                            src="/images/plus.webp"
-                                            alt="Placeholder"
-                                            className="w-full h-full object-cover opacity-40"
-                                        />
-                                        </button>
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                        <img
-                                            src="/images/plus.webp"
-                                            alt="Placeholder"
-                                            className="w-full h-full object-cover opacity-40"
-                                        />
-                                        </button>
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                            <img
-                                                src="/images/plus.webp"
-                                                alt="Placeholder"
-                                                className="w-full h-full object-cover opacity-40"
-                                            />
-                                        </button>
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                            <img
-                                                src="/images/plus.webp"
-                                                alt="Placeholder"
-                                                className="w-full h-full object-cover opacity-40"
-                                            />
-                                        </button>
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                            <img
-                                                src="/images/plus.webp"
-                                                alt="Placeholder"
-                                                className="w-full h-full object-cover opacity-40"
-                                            />
-                                        </button>
-                                        <button className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn" disabled>
-                                            <img
-                                                src="/images/plus.webp"
-                                                alt="Placeholder"
-                                                className="w-full h-full object-cover opacity-40"
-                                            />
-                                        </button>
-
+                                        {[...Array(6)].map((_, i) => (
+                                            <button
+                                                key={`placeholder-${i}`}
+                                                className="w-24 aspect-square flex items-center justify-center hover:border-blue-500 transition glass-btn"
+                                                disabled
+                                            >
+                                                <img
+                                                    src="/images/plus.webp"
+                                                    alt="Placeholder"
+                                                    className="w-full h-full object-cover opacity-40"
+                                                />
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
                                 {/* Stats chart box */}
