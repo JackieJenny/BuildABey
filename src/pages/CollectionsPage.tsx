@@ -51,7 +51,7 @@ export default function CollectionPage() {
                     <img
                       src={bey.image}
                       alt={bey.name}
-                      className="w-24 h-24 object-contain bg-white"
+                      className="w-50 h-50 object-contain bg-transparent"
                     />
                   ) : (
                     <div className="w-24 h-24 bg-transparent">
