@@ -8,7 +8,7 @@ type Part = {
     attack: number;
     defense: number;
     stamina: number;
-    image?: string;
+    image: string;
 };
 
 interface Props {
@@ -61,7 +61,7 @@ const BeyCarousel: React.FC<Props> = ({ title, parts, onSelect, selectedPart }) 
                 <div ref={sliderRef} className="keen-slider">
                     {parts.map((part) => (
                         <div key={part.id} className="keen-slider__slide px-8 m-0">
-                            <div className="rounded-lg text-center p-2 m-0">
+                            <div className="rounded-lg text-center p-4 m-0">
                                 {part.image && (
                                     <img
                                         src={part.image}
