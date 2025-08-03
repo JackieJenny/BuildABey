@@ -1,12 +1,13 @@
 import BeyCarousel from "../components/BeyCarousel.tsx";
 import BeyStatsChart from "../components/BeyStatsChart.tsx";
 import { EnergyLayer, FaceBolt, SpinTrack, Tip } from "../BeybladeParts/BeybladeComponents.ts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PresetBeyblades from "../components/presets.ts";
 import { Navbar } from "../components/NavBarFix.tsx";
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateBeyPage() {
+
     const [selectedEnergy, setSelectedEnergy] = useState(EnergyLayer[0]);
     const [selectedBolt, setSelectedBolt] = useState(FaceBolt[0]);
     const [selectedTrack, setSelectedTrack] = useState(SpinTrack[0]);
@@ -114,8 +115,13 @@ export default function CreateBeyPage() {
                             </div>
                         </div>
                     </div>
+
                 </div>
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
