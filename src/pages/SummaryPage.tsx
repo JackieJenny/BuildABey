@@ -2,7 +2,8 @@ import { Navbar } from "../components/NavBarFix.tsx";
 import { useNavigate } from 'react-router-dom';
 
 export default function SummaryPage() {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
+
   return (
     <>
         <Navbar />
@@ -28,18 +29,17 @@ export default function SummaryPage() {
         <h2 className="text-lg font-bold mb-2">SUMMARY</h2>
         <p>Your custom Beyblade is ready! Review its stats and save it to your collection.</p>
         <div className="flex gap-4 mt-4">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-            Save to Collection
-          </button>
-          <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600">
-            Finish
+          <button 
+          onClick={() => navigate('/collection')}
+          className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+            Save & Finish
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  {/* 🧊 Floating Left Glass Box */}
+  {/* Floating Left Glass Box */}
 <div className="absolute left-12 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md bg-white/10 
   rounded-2xl border border-white/20 shadow-xl w-[32rem] h-[85%] p-6 
   flex flex-col justify-between items-center text-white"> {/* 🔥 Was w-[24rem] */}
