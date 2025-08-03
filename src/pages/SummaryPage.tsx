@@ -21,9 +21,9 @@ export default function SummaryPage() {
             <img src="/images/completeRenders/customfull.png" alt="Saved Beyblade" className="w-80 h-80 object-cover" />
           </div>
           {/* Stats Section */}
-          <div className="backdrop-blur-md bg-gray-100/5 w-80 h-64 flex-1 rounded-xl p-4
+          <div className="backdrop-blur-md bg-gray-100/5 w-100 h-64 flex-1 rounded-xl p-4
            border border-gray-500/50 shadow-lg shadow-inner flex items-center justify-center ">
-            <ul>
+            <ul className="text-2xl font-semibold">
               <li>TYPE: STAMINA</li>
               <li>BOLT: L-DRAGO</li>
               <li>FUSION WHEEL: LEONE</li>
