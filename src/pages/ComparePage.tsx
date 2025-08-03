@@ -70,6 +70,10 @@ const findStats = (partList: any[], id: string): StatBlock => {
   return partList.find(p => p.id === id) ?? { attack: 0, defense: 0, stamina: 0 };
 };
 
+const MAX_ATTACK = 100;
+const MAX_DEFENSE = 100;
+const MAX_STAMINA = 100;
+
 const calculateStats = (beyName: BeyName): StatBlock => {
   const parts = BEY_PARTS[beyName];
   const energy = findStats(EnergyLayer, parts.energy);
@@ -78,23 +82,27 @@ const calculateStats = (beyName: BeyName): StatBlock => {
   const tip = findStats(Tip, parts.tip);
 
   return {
-    attack: 20 * (energy.attack + face.attack + track.attack + tip.attack),
-    defense: 1 * (energy.defense + face.defense + track.defense + tip.defense),
-    stamina: 3 * (energy.stamina + face.stamina + track.stamina + tip.stamina),
+    attack: Math.round(energy.attack + face.attack + track.attack + tip.attack),
+    defense: Math.round(energy.defense + face.defense + track.defense + tip.defense),
+    stamina: Math.round(energy.stamina + face.stamina + track.stamina + tip.stamina),
   };
 };
+
+
 
 
 export const calculateWinProbability = (leftBey: BeyName, rightBey: BeyName): number => {
   const left = calculateStats(leftBey);
   const right = calculateStats(rightBey);
 
-  const leftTotal = left.attack + left.defense + left.stamina;
-  const rightTotal = right.attack + right.defense + right.stamina;
+  const leftWeighted =
+    0.5 * left.attack + 0.3 * left.defense + 0.2 * left.stamina;
+  const rightWeighted =
+    0.5 * right.attack + 0.3 * right.defense + 0.2 * right.stamina;
 
-  if (leftTotal + rightTotal === 0) return 0.5; // Avoid division by zero
+  if (leftWeighted + rightWeighted === 0) return 0.5;
 
-  return leftTotal / (leftTotal + rightTotal); // Win probability for the left
+  return leftWeighted / (leftWeighted + rightWeighted);
 };
 
 
@@ -178,6 +186,9 @@ const ComparePage = () => {
 
 
   const leftWinProbability = calculateWinProbability(leftBey, rightBey); // Just an example
+  const leftStats = calculateStats(leftBey);
+  const rightStats = calculateStats(rightBey);
+
   const leftPercent = leftWinProbability * 100;
   const rightPercent = (1 - leftWinProbability) * 100;
   const handleNext = () => {
@@ -239,9 +250,22 @@ const ComparePage = () => {
 
 
           {/* Center Box */}
-          <div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner">
-            COMPARE
-          </div>
+{/* Center Box */}
+<div className="backdrop-blur-md bg-glassgrey/30 h-[60vh] w-[33vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col justify-center items-center text-white space-y-4">
+  <h2 className="text-xl font-bold mb-4">Stat Comparison</h2>
+
+  <div className="w-full text-sm space-y-2">
+    {["attack", "defense", "stamina"].map((stat) => (
+      <div key={stat} className="flex justify-between items-center">
+        <span className="w-20 capitalize">{stat}</span>
+        <span className="text-violet-400 font-semibold">{leftStats[stat as keyof StatBlock]}</span>
+        <span className="mx-2">vs</span>
+        <span className="text-rose-400 font-semibold">{rightStats[stat as keyof StatBlock]}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Right Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
