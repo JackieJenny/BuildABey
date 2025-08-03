@@ -16,9 +16,9 @@ export default function SummaryPage() {
                 {/* Left Side */}
         <div className="flex flex-col items-center w-full md:w-1/3">
           {/* Beyblade Image Box */}
-          <div className="bg-transparent rounded-lg shadow-lg w-48 h-48 flex items-center justify-center mb-6">
+          <div className="bg-transparent rounded-lg shadow-lg w-80 h-80 flex items-center justify-center mb-6">
             {/* Replace src with your saved beyblade image */}
-            <img src="/images/completeRenders/customfull.png" alt="Saved Beyblade" className="w-50 h-50 object-cover" />
+            <img src="/images/completeRenders/customfull.png" alt="Saved Beyblade" className="w-80 h-80 object-cover" />
           </div>
           {/* Stats Section */}
           {/* Stats Section */}
