@@ -32,6 +32,8 @@ a:hover {
 }
 
 body {
+  background: url('/images/BackGround2.png') center/cover no-repeat;
+  background-attachment: fixed; /* Keeps it fixed even on scroll */
   margin: 0;
   display: flex;
   place-items: center;

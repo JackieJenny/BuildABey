@@ -32,7 +32,7 @@ export default function LandingPage() {
           >
           BUILD A BEY</h1>
           <div className="text-3xl font-inter">
-            Choose parts, Cusomise colours and compare with
+            Choose parts, Customise colours and compare with
           </div>
           <div className="text-3xl font-inter mb-8">popular builds online</div>
           <button
