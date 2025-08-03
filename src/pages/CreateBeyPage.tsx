@@ -4,12 +4,21 @@ import { EnergyLayer, FaceBolt, SpinTrack, Tip } from "../BeybladeParts/Beyblade
 import { useState } from "react";
 import PresetBeyblades from "../components/presets.ts";
 import { Navbar } from "../components/NavBarFix.tsx";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function CreateBeyPage() {
     const [selectedEnergy, setSelectedEnergy] = useState(EnergyLayer[0]);
     const [selectedBolt, setSelectedBolt] = useState(FaceBolt[0]);
     const [selectedTrack, setSelectedTrack] = useState(SpinTrack[0]);
     const [selectedTip, setSelectedTip] = useState(Tip[0]);
+
+    const navigate = useNavigate();
+
+    const handleBuildClick = () => {
+    navigate('/compare?model=custom');
+    };
+
 
     const totalStats = {
         attack:
@@ -44,7 +53,12 @@ export default function CreateBeyPage() {
                                     <BeyCarousel title="Spin Track" parts={SpinTrack} onSelect={setSelectedTrack} selectedPart={selectedTrack} />
                                     <BeyCarousel title="Tip" parts={Tip} onSelect={setSelectedTip} selectedPart={selectedTip} />
                                     <div className="flex justify-center mt-4">
-                                        <button className="px-4 py-2 bg-violet-600 text-white rounded" disabled>Create Beyblade</button>
+                                        <button
+                                        onClick={() => navigate('/compare?model=custom')}
+                                        className="px-4 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition"
+                                        >
+                                        Create Beyblade
+                                        </button>
                                     </div>
                                 </div>
 
