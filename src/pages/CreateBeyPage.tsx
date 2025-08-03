@@ -19,7 +19,7 @@ export default function CreateBeyPage() {
     const handleBuildClick = () => {
         setMoveUp(true); // trigger leave animation
         setTimeout(() => {
-            navigate('/compare?model=custom');
+            navigate('/animation');
         }, 700); // match animation duration
     };
 
