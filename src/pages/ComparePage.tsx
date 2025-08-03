@@ -93,12 +93,12 @@ export const calculateWinProbability = (leftBey: BeyName, rightBey: BeyName): nu
 
 
 const BEY_OPTIONS: Record<BeyName, { label: string; img: string }> = {
-  leone_self: { label: "Leone", img: "/images/tongue.png" },
-  pegasus_self: { label: "Pegasus", img: "/images/tongue.png" },
-  leone_opp: { label: "Leone", img: "/images/tongue.png" },
-  pegasus_opp: { label: "Pegasus", img: "/images/tongue.png" },
-  ldrago_self:  { label: "L Drago", img: "/images/tongue.png" },
-  ldrago_opp: { label: "L Drago", img: "/images/tongue.png" },
+  leone_self: { label: "Leone", img: "/images/completeRenders/leonefull.png" },
+  pegasus_self: { label: "Pegasus", img: "/images/completeRenders/pegasusfull.png" },
+  leone_opp: { label: "Leone", img: "/images/completeRenders/leonefull.png" },
+  pegasus_opp: { label: "Pegasus", img: "/images/completeRenders/pegasusfull.png" },
+  ldrago_self:  { label: "L Drago", img: "/images/completeRenders/ldragofull.png" },
+  ldrago_opp: { label: "L Drago", img: "/images/completeRenders/ldragofull.png" },
 };
 
 const formatBeyLabel = (beyName: BeyName) => {
@@ -141,8 +141,12 @@ const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
 
 
 const ComparePage = () => {
-  const [leftBey, setLeftBey] = useState<BeyName>("pegasus_self");
+
+  const [searchParams] = useSearchParams();
+  const initialLeftModel = (searchParams.get("model") as BeyName) ?? "pegasus_self";
+  const [leftBey, setLeftBey] = useState<BeyName>(initialLeftModel);
   const [isLeftSelectorOpen, setIsLeftSelectorOpen] = useState(false);
+
   const [rightBey, setRightBey] = useState<BeyName>("pegasus_opp");
   const [isRightSelectorOpen, setIsRightSelectorOpen] = useState(false);
 
@@ -178,24 +182,36 @@ const ComparePage = () => {
           {/* Left Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
            
-            {isLeftSelectorOpen && (
-              <div className="absolute left-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 space-y-2 border border-white/10">
-                {(["leone_self", "pegasus_self", "ldrago_self"] as BeyName[]).map((bey) => (
-                  <div
-                    key={bey}
-                    onClick={() => handleLeftSelect(bey)}
-                    className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
-                  >
-                    <img
-                      src={BEY_OPTIONS[bey].img}
-                      alt={BEY_OPTIONS[bey].label}
-                      className="w-10 h-10 rounded-md object-cover border border-white/20"
-                    />
-                    <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+{isLeftSelectorOpen && (
+  <div
+    className="absolute left-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 border border-white/10"
+    style={{
+      maxHeight: '300px',
+      overflowY: 'auto',
+
+      // Hide scrollbar for Firefox and IE/Edge
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none',
+    }}
+  >
+    {(["leone_self", "pegasus_self", "ldrago_self"] as BeyName[]).map((bey) => (
+      <div
+        key={bey}
+        onClick={() => handleLeftSelect(bey)}
+        className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
+      >
+        <img
+          src={BEY_OPTIONS[bey].img}
+          alt={BEY_OPTIONS[bey].label}
+          className="w-30 h-30 rounded-md object-cover border border-white/20"
+        />
+        <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
+      </div>
+    ))}
+  </div>
+)}
+
+
 
           <div className="flex flex-col items-center gap-2 flex-1 cursor-pointer" onClick={handleLeftModelClick}>
             <span className="text-white text-lg font-semibold">YOUR BEY</span>
@@ -218,24 +234,33 @@ const ComparePage = () => {
           {/* Right Box */}
           <div className="backdrop-blur-md bg-glassgrey/30 h-[50vh] w-[50vh] rounded-xl p-8 border border-gray-500/50 shadow-lg shadow-inner flex flex-col relative">
           
-          {isRightSelectorOpen && (
-            <div className="absolute right-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 space-y-2 border border-white/10">
-              {(["leone_opp", "pegasus_opp", "ldrago_opp"] as BeyName[]).map((bey) => (
-                <div
-                  key={bey}
-                  onClick={() => handleRightSelect(bey)}
-                  className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
-                >
-                  <img
-                    src={BEY_OPTIONS[bey].img}
-                    alt={BEY_OPTIONS[bey].label}
-                    className="w-10 h-10 rounded-md object-cover border border-white/20"
-                  />
-                  <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
-                </div>
-              ))}
-            </div>
-          )}
+  {isRightSelectorOpen && (
+    <div
+      className="absolute right-0 top-4 w-full bg-neutral-900 text-white rounded-xl shadow-xl z-20 p-2 space-y-2 border border-white/10"
+      style={{
+        maxHeight: '300px',
+        overflowY: 'auto',
+        // Hide scrollbar for Firefox and IE/Edge
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+      }}
+    >
+      {(["leone_opp", "pegasus_opp", "ldrago_opp"] as BeyName[]).map((bey) => (
+        <div
+          key={bey}
+          onClick={() => handleRightSelect(bey)}
+          className="flex items-center gap-3 cursor-pointer hover:bg-neutral-800 p-2 rounded-lg transition-colors"
+        >
+          <img
+            src={BEY_OPTIONS[bey].img}
+            alt={BEY_OPTIONS[bey].label}
+            className="w-30 h-30 rounded-md object-cover border border-white/20"
+          />
+          <span className="text-sm font-medium">{BEY_OPTIONS[bey].label}</span>
+        </div>
+      ))}
+    </div>
+  )}
 
             <div className="flex flex-col items-center gap-2 flex-1 cursor-pointer" onClick={handleRightModelClick}>
               <span className="text-white text-lg font-semibold">{formatBeyLabel(rightBey)}</span>
