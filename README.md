@@ -1,8 +1,8 @@
-Beyblade Tierlist:
-S: Pegasus(All models), Capricorn(All models)
-A: Libra
-B:
-C:
-D:
-...
-F:Rock leone, Fang leone
+Beyblade Tierlist:\n
+S: Pegasus(All models), Capricorn(All models)\n
+A: Libra\n
+B:\n
+C:\n
+D:\n
+...\n
+F:Rock leone, Fang leone\n
