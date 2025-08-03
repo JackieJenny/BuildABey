@@ -6,8 +6,88 @@ import { Navbar } from '../components/NavBarFix'
 import { Suspense, useState } from "react";
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { EnergyLayer, FaceBolt, SpinTrack, Tip } from '../BeybladeParts/BeybladeComponents';
+
 
 type BeyName = "leone_self"| "leone_opp" | "pegasus_opp" | "pegasus_self" | "ldrago_self" | "ldrago_opp";
+
+type StatBlock = {
+  attack: number;
+  defense: number;
+  stamina: number;
+};
+
+// This maps each Bey to its parts
+const BEY_PARTS: Record<string, { energy: string; face: string; track: string; tip: string }> = {
+  pegasus_self: {
+    energy: 'PegasusEnergyLayer',
+    face: 'PegasusFaceBolt',
+    track: 'PegasusSpinTrack',
+    tip: 'PegasusTip'
+  },
+  leone_self: {
+    energy: 'LeoneEnergyLayer',
+    face: 'LeoneFaceBolt',
+    track: 'LeoneSpinTrack',
+    tip: 'LeoneTip'
+  },
+  ldrago_self: {
+    energy: 'LdragoEnergyLayer',
+    face: 'LdragoFaceBolt',
+    track: 'LdragoSpinTrack',
+    tip: 'LdragoTip'
+  },
+  pegasus_opp: {
+    energy: 'PegasusEnergyLayer',
+    face: 'PegasusFaceBolt',
+    track: 'PegasusSpinTrack',
+    tip: 'PegasusTip'
+  },
+  leone_opp: {
+    energy: 'LeoneEnergyLayer',
+    face: 'LeoneFaceBolt',
+    track: 'LeoneSpinTrack',
+    tip: 'LeoneTip'
+  },
+  ldrago_opp: {
+    energy: 'LdragoEnergyLayer',
+    face: 'LdragoFaceBolt',
+    track: 'LdragoSpinTrack',
+    tip: 'LdragoTip'
+  },
+};
+
+const findStats = (partList: any[], id: string): StatBlock => {
+  return partList.find(p => p.id === id) ?? { attack: 0, defense: 0, stamina: 0 };
+};
+
+const calculateStats = (beyName: BeyName): StatBlock => {
+  const parts = BEY_PARTS[beyName];
+  const energy = findStats(EnergyLayer, parts.energy);
+  const face = findStats(FaceBolt, parts.face);
+  const track = findStats(SpinTrack, parts.track);
+  const tip = findStats(Tip, parts.tip);
+
+  return {
+    attack: 20 * (energy.attack + face.attack + track.attack + tip.attack),
+    defense: 1 * (energy.defense + face.defense + track.defense + tip.defense),
+    stamina: 3 * (energy.stamina + face.stamina + track.stamina + tip.stamina),
+  };
+};
+
+
+export const calculateWinProbability = (leftBey: BeyName, rightBey: BeyName): number => {
+  const left = calculateStats(leftBey);
+  const right = calculateStats(rightBey);
+
+  const leftTotal = left.attack + left.defense + left.stamina;
+  const rightTotal = right.attack + right.defense + right.stamina;
+
+  if (leftTotal + rightTotal === 0) return 0.5; // Avoid division by zero
+
+  return leftTotal / (leftTotal + rightTotal); // Win probability for the left
+};
+
 
 const BEY_OPTIONS: Record<BeyName, { label: string; img: string }> = {
   leone_self: { label: "Leone", img: "/images/tongue.png" },
@@ -82,7 +162,7 @@ const ComparePage = () => {
   };
 
 
-  const leftWinProbability = 0.45; // Just an example
+  const leftWinProbability = calculateWinProbability(leftBey, rightBey); // Just an example
   const leftPercent = leftWinProbability * 100;
   const rightPercent = (1 - leftWinProbability) * 100;
 
