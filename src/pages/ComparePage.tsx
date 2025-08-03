@@ -7,7 +7,7 @@ import { Suspense, useState } from "react";
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { EnergyLayer, FaceBolt, SpinTrack, Tip } from '../BeybladeParts/BeybladeComponents';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 
 
@@ -149,7 +149,7 @@ const SceneCanvas = ({ children }: { children: React.ReactNode }) => (
 
 
 const ComparePage = () => {
-
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams();
   const initialLeftModel = (searchParams.get("model") as BeyName) ?? "pegasus_self";
   const [leftBey, setLeftBey] = useState<BeyName>(initialLeftModel);
@@ -180,11 +180,14 @@ const ComparePage = () => {
   const leftWinProbability = calculateWinProbability(leftBey, rightBey); // Just an example
   const leftPercent = leftWinProbability * 100;
   const rightPercent = (1 - leftWinProbability) * 100;
+  const handleNext = () => {
+    setTimeout(() => navigate('/summary'), 500) // matches transition duration
+  }
 
   return (
     <>
       <Navbar />
-      <div className="flex flex-col h-screen items-center justify-center px-24" style={{ width: '100vw' , backgroundImage: "url('/images/Background.png')"}}>
+      <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
         <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
 
           {/* Left Box */}
@@ -321,6 +324,12 @@ const ComparePage = () => {
     <span>{rightPercent.toFixed(0)}%</span>
   </div>
 </div>
+<button
+            onClick={handleNext}
+            className="bg-blue-700 px-8 py-3 rounded-xl text-xl hover:bg-blue-700 transition"
+          >
+            Confirm
+          </button>
 
 
 
