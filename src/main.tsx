@@ -14,6 +14,8 @@ useGLTF.preload('/models/pegasus_self.glb');
 useGLTF.preload('/models/leone_self.glb');
 useGLTF.preload('/models/pegasus_opp.glb');
 useGLTF.preload('/models/leone_opp.glb');
+useGLTF.preload('/models/ldrago_self.glb');
+useGLTF.preload('/models/ldrago_opp.glb');
 
 createRoot(document.getElementById('root')!).render(
 
