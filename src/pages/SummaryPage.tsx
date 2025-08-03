@@ -1,17 +1,14 @@
 import { Navbar } from "../components/NavBarFix.tsx";
+import { useNavigate } from 'react-router-dom';
 
 export default function SummaryPage() {
+  const navigate = useNavigate()
   return (
     <>
         <Navbar />
             <div
-                className="flex items-center justify-center flex-col md:flex-row gap-10 p-6 w-screen h-screen relative"
-                style={{
-                  backgroundImage: "url('/images/Background.png')",
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
+                className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
+        overflow-hidden"
               >
                 {/* Left Side */}
         <div className="flex flex-col items-center w-full md:w-1/3">
@@ -48,7 +45,7 @@ export default function SummaryPage() {
             <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600">
               Save to Collection
             </button>
-            <button className="bg-green-500 text-white px-6 py-2 rounded-lg shadow hover:bg-green-600">
+            <button onClick={() => navigate("/")} className="bg-green-500 text-white px-6 py-2 rounded-lg shadow hover:bg-green-600">
               Finish
             </button>
           </div>

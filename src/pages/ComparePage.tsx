@@ -187,7 +187,8 @@ const ComparePage = () => {
   return (
     <>
       <Navbar />
-      <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] bg-cover bg-center">
+      <div className="h-dvh w-dvw flex flex-col justify-center items-center bg-gray-900 text-white pt-16 bg-[url('/images/BackGround2.png')] 
+        overflow-hidden">
         <div className="flex items-end justify-center gap-0 w-full max-w-[1400px]">
 
           {/* Left Box */}
