@@ -2,4 +2,4 @@ Beyblade Tierlist:
 
 S: Pegasus(All models), Capricorn(All models)
 
-F:Rock leone, Fang leone
+SSS:Rock leone, Fang leone
